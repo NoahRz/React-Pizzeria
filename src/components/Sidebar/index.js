@@ -10,11 +10,11 @@ import {
     SidebarRoute
 } from './styles';
 
-const Sidebar = () => {
+const Sidebar = ({isOpen, openHandle}) => {
     return (
         <div>
-            <SidebarContainer>
-                <Icon>
+            <SidebarContainer isOpen= {isOpen}>
+                <Icon  onClick={openHandle}>
                     <CloseIcon />
                 </Icon>
                 <SidebarWrapper>
@@ -28,7 +28,7 @@ const Sidebar = () => {
                         <SidebarLink to="/menus">
                             Menus
                         </SidebarLink>
-                        <SidebarLink to="/reservertable">
+                        <SidebarLink to="/reservetable">
                             Reserve your table
                         </SidebarLink>
                         <SidebarLink to="/signin">

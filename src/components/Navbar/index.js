@@ -13,13 +13,13 @@ import {
     NavBtnLink
 } from './styles';
 
-const Navbar = () => {
+const Navbar = ({openHandle}) => {
     return (
         <div>
            <Nav>
                <NavbarContainer>
-                   <NavLogo to='/'>Pizzeria</NavLogo>
-                <MobileIcon>
+                   <NavLogo exact to='/'>Pizzeria</NavLogo>
+                <MobileIcon onClick= {openHandle}>
                     <FaBars />
                 </MobileIcon>
                 <NavMenu>
