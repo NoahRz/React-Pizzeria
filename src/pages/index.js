@@ -3,6 +3,7 @@
 import React, {useState} from 'react'
 import { Navbar, Sidebar, Hero } from '../components'
 import Footer from '../components/Footer';
+import Message from '../components/Message';
 
 const Home = () => {
 
@@ -17,6 +18,7 @@ const Home = () => {
             <Sidebar isOpen={isOpen} openHandle={openHandle}/>
             <Navbar openHandle={openHandle} />
             <Hero />
+            <Message />
             <Footer />
         </div>
     )

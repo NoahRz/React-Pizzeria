@@ -1,12 +1,15 @@
 /*@import url('https://fonts.googleapis.com/css?family=Muli:400,700,800,900&display=swap'); /* to change */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');*/
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 
 * {
     margin: 0;
     box-sizing: border-box;
     padding:0;
-    font-family: 'Roboto', sans-serif; /* to change */
+    font-family: 'Source Sans Pro', sans-serif; /* to change */
     /*overflow-x: hidden;*/
 }
 

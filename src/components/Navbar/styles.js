@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export const Nav = styled.nav`
     background : rgba(0, 0, 0, ${({scroll}) => (scroll )});
-    //background: ${({scroll}) => (scroll ? '#000' : 'transparent')};
+    transition: 0.8s all ease;
     height: 80px;
     margin-top: -80px;
     display: flex;
