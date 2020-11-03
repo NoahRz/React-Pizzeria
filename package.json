@@ -11,7 +11,9 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
-    "styled-components": "^5.2.0"
+    "react-scrollmagic": "^2.2.0",
+    "styled-components": "^5.2.0",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",

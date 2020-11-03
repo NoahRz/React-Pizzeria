@@ -1,7 +1,7 @@
 // the home page
 
 import React, {useState} from 'react'
-import { Navbar, Sidebar } from '../components'
+import { Navbar, Sidebar, Hero } from '../components'
 
 const Home = () => {
 
@@ -15,6 +15,7 @@ const Home = () => {
         <div>
             <Sidebar isOpen={isOpen} openHandle={openHandle}/>
             <Navbar openHandle={openHandle} />
+            <Hero />
         </div>
     )
 }

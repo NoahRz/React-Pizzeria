@@ -15,10 +15,10 @@ import {
 
 const Navbar = ({openHandle}) => {
     return (
-        <div>
+        <>
            <Nav>
                <NavbarContainer>
-                   <NavLogo exact to='/'>Pizzeria</NavLogo>
+                   <NavLogo exact to='/'>🍕 Pizzeria</NavLogo>
                 <MobileIcon onClick= {openHandle}>
                     <FaBars />
                 </MobileIcon>
@@ -47,7 +47,7 @@ const Navbar = ({openHandle}) => {
                 </NavBtn>
                </NavbarContainer>
            </Nav>
-        </div>
+        </>
     )
 }
 

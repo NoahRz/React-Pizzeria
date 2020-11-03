@@ -12,7 +12,7 @@ import {
 
 const Sidebar = ({isOpen, openHandle}) => {
     return (
-        <div>
+        <>
             <SidebarContainer isOpen= {isOpen}>
                 <Icon  onClick={openHandle}>
                     <CloseIcon />
@@ -43,7 +43,7 @@ const Sidebar = ({isOpen, openHandle}) => {
                     </SideBtnWrap>
                 </SidebarWrapper>
             </SidebarContainer>
-        </div>
+        </>
     )
 }
 
