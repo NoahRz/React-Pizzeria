@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {FaBars} from 'react-icons/fa';
 import {
@@ -14,9 +14,26 @@ import {
 } from './styles';
 
 const Navbar = ({openHandle}) => {
+
+    const scrollPoint = 100;
+
+    const [scroll, setScroll] = useState(0);
+
+    const changeNav = () => {
+        if(window.scrollY>=scrollPoint){
+            setScroll(1)
+        }else {
+            setScroll(window.scrollY/scrollPoint);
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', changeNav);
+    }, []);
+
     return (
         <>
-           <Nav>
+           <Nav scroll={scroll}>
                <NavbarContainer>
                    <NavLogo exact to='/'>🍕 Pizzeria</NavLogo>
                 <MobileIcon onClick= {openHandle}>

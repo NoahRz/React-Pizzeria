@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 export const Nav = styled.nav`
-    background: 'transparent';
+    background : rgba(0, 0, 0, ${({scroll}) => (scroll )});
+    //background: ${({scroll}) => (scroll ? '#000' : 'transparent')};
     height: 80px;
     margin-top: -80px;
     display: flex;
