@@ -3,6 +3,7 @@
 import React, {useState} from 'react'
 import { Navbar, Sidebar, Hero } from '../components'
 import Footer from '../components/Footer';
+import MenusGrid from '../components/MenusGrid';
 import Message from '../components/Message';
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
             <Navbar openHandle={openHandle} />
             <Hero />
             <Message />
+            <MenusGrid />
             <Footer />
         </div>
     )
