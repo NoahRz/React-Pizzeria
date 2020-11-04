@@ -28,7 +28,7 @@ const MenusGrid = () => {
                         <MenuH1>Menu1</MenuH1>
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
-                            <Button to="signup" primary="true" dark="true">
+                            <Button to="/" primary="true" dark="true">
                             Buy
                             </Button>
                         </MenuBtnWrapper>
@@ -39,7 +39,7 @@ const MenusGrid = () => {
                         <MenuH1>Menu2</MenuH1>
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
-                            <Button to="signup" primary="true" dark="true">
+                            <Button to="/" primary="true" dark="true">
                             Buy
                             </Button>
                         </MenuBtnWrapper>
@@ -56,7 +56,7 @@ const MenusGrid = () => {
                         <MenuH1>Menu3</MenuH1>
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
-                            <Button to="signup" primary="true" dark="true">
+                            <Button to="/" primary="true" dark="true">
                             Buy
                             </Button>
                         </MenuBtnWrapper>
