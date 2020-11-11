@@ -4,6 +4,7 @@ import  {BrowserRouter as Router, Switch,  Route, Link, Redirect} from 'react-ro
 import Home from './pages';
 import { Navbar, Sidebar} from './components';
 import axios from 'axios';
+import About from './components/About';
 
 async function makeGetRequest(url) {
 
@@ -29,7 +30,7 @@ function App() {
   const [tests, setTests] = useState([]);
 
   useEffect(() => {
-    addTest();
+    //addTest();
     //fetchTests();
   }, [])
 
@@ -67,7 +68,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/> 
           <Route path="/about"> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
-            <h1>Something1</h1>
+            <About/>
           </Route>
           <Route path="/order">
             <h1>Something2</h1>

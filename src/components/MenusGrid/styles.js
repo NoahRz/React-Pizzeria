@@ -26,11 +26,13 @@ export const MenuBlock = styled.div`
     margin: 0;
     text-align: left;
     max-width: 33.3333%;
-    height : 900px;
+    height: calc(100vw * 0.65);
+    //height : 900px;
     box-sizing: border-box;
     background-color: #fff;
 
     @media screen and (max-width: 770px) {
+        height: calc(100vw * 1.5);
         margin: 0;
         padding: 10px;
         max-width: 100%;
