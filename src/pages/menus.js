@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {
     PageContainer,
-    PizzaList
+    FoodList
 } from '../components';
 
  async function makeGetRequest(url) {
@@ -44,7 +44,11 @@ const Menus = () => {
 
     return (
         <div>
-            <PizzaList pizzas={pizzas}/>
+            <FoodList foods={pizzas}/>
+            <FoodList foods={desserts}/>
+            <FoodList foods={drinks}/>
+            {/* <DessertList desserts={desserts}/>
+            <Drinklist drinks={drinks}/> */}
             <PageContainer/>
         </div>
     )

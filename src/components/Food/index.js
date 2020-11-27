@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 
-const Pizza = ({pizzas, name, description, pizza}) => {
+const Food = ({name, description}) => {
 
     return (
-        <div className="pizza">
+        <div>
             <h1>{name}</h1>
             <h2>{description}</h2>
         </div>
     )
 }
 
-export default Pizza;
+export default Food;
