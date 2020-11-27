@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import './index.css';
-import  {BrowserRouter as Router, Switch,  Route, Link, Redirect} from 'react-router-dom';
-import Home from './pages';
-import { Navbar, Sidebar} from './components';
 import axios from 'axios';
-import About from './components/About';
+import  {BrowserRouter as Router, Switch,  Route, Link, Redirect} from 'react-router-dom';
+
+import './index.css';
+import {Home, About, Order, Menus, ReserveTable, Signin, Setting, Signup} from './pages';
+import { Navbar, Sidebar} from './components';
 
 /* async function makeGetRequest(url) {
 
@@ -72,12 +72,13 @@ function App() {
         <Navbar openHandle={openHandle} />
         <Switch>
           <Route exact path="/" component={Home}/> 
-          <Route path="/about"> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
-            <About/>
-          </Route>
-          <Route path="/order">
-            <h1>Something2</h1>
-          </Route>
+          <Route path="/about" component={About}/> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
+          <Route path="/order" component={Order}/>
+          <Route path="/menus" component={Menus}/>
+          <Route path="/reserveTable" component={ReserveTable}/>
+          <Route path="/signin" component={Signin}/>
+          <Route path="/setting" component={Setting}/>
+          <Route path="/signup" component={Signup}/>
         </Switch>
       </div>
     </Router>

@@ -1,17 +1,12 @@
 import React from 'react';
-import {
+/* import {
     AboutContainer,
     AboutWrapper
-} from'./styles';
+} from'./styles'; */
 
 const About = () => {
     return(
         <>
-            <AboutContainer>
-                <AboutWrapper>
-
-                </AboutWrapper>
-            </AboutContainer>
         </>
     );
 }

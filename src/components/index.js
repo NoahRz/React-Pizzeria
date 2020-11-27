@@ -4,3 +4,4 @@ export { default as Hero } from './Hero/index';
 export { default as Footer } from './Footer/index';
 export { default as MenusGrid} from './MenusGrid/index';
 export { default as Message} from './Message/index';
+export { default as PageContainer} from './PageContainer/index';
