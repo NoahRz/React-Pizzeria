@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 
 import {
-    PageContainer
+    SigninForm,
+    Footer
 } from '../components';
 
 const Signin = () => {
 
     return (
         <div>
-           <PageContainer/>
+           <SigninForm/>
+           <Footer />
         </div>
     )
 }
