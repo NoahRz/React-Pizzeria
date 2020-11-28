@@ -11,6 +11,20 @@ import {
     FormElement,
     SignupFormButton
 } from './styles';
+import axios from 'axios';
+
+async function makePostRequest(url, newUsername, newPassword, newFirstname, newLastname, newEmail, newAddress) {
+
+    let res = await axios.post(url, {
+      username : newUsername,
+      password : newPassword,
+      firstname : newFirstname,
+      lastname :newLastname,
+      email : newEmail,
+      address: newAddress,
+    });
+    return res;
+  }
 
 const SignupForm = () => {
 
