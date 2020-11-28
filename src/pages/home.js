@@ -3,7 +3,6 @@
 import React, {useState} from 'react';
 import {
     Hero,
-    Footer,
     MenusGrid,
     Message
 } from '../components';
@@ -16,7 +15,6 @@ const Home = () => {
             <Hero />
             <Message />
             <MenusGrid />
-            <Footer />
         </div>
     )
 }
