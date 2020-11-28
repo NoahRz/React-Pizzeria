@@ -8,3 +8,4 @@ export { default as PageContainer} from './PageContainer/index';
 export { default as FoodList} from './FoodList/index';
 export { default as Food} from './Food/index';
 export { default as SigninForm} from './SigninForm/index';
+export { default as SignupForm} from './SignupForm/index';

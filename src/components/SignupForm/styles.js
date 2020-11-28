@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 
-export const SigninFormContainer = styled.div`
+export const SignupFormContainer = styled.div`
     margin-top: 100px;
+    margin-bottom: 100px;
     position: relative;
     bottom: 0;
     left: 0;
@@ -12,10 +12,9 @@ export const SigninFormContainer = styled.div`
     min-height: 692px;
 `;
 
-export const SigninFormWrap = styled.div`
+export const SignupFormWrap = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     height: 100%;
 
     @media screen and (max-width: 400px) {
@@ -23,7 +22,7 @@ export const SigninFormWrap = styled.div`
     }
 `;
 
-export const SigninFormContent = styled.div`
+export const SignupFormContent = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -37,11 +36,12 @@ export const SigninFormContent = styled.div`
 export const Form = styled.form`
     background: #000;
     height: auto ;
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
     z-index: 1;
-    display: grid;
-    margin: 0 auto; // to center
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
     padding: 80px 32px;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.9);
@@ -51,17 +51,23 @@ export const Form = styled.form`
     }
 `;
 
-export const SigninLogo = styled(Link)`
-    color: #fff;
-    margin-bottom: 40px;
-    cursor: pointer;
-    font-size: 2rem;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-`;
+export const FormRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
-export const SigninFormH1 = styled.h1`
+    @media screen and (max-width: 400px){
+        flex-direction: column;
+    }
+`
+
+export const FormElement = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`
+
+export const SignupFormH1 = styled.h1`
     font-size: 20px;
     font-weight: 400;
     color: #fff;
@@ -69,20 +75,23 @@ export const SigninFormH1 = styled.h1`
     margin-bottom: 40px;
 `;
 
-export const SigninFormLabel = styled.label`
+export const SignupFormLabel = styled.label`
     font-size: 14px;
     margin-bottom: 8px;
+    margin-left: 8px;
     color: #fff;
 `;
 
-export const SigninFormInput = styled.input`
+export const SignupFormInput = styled.input`
     border: none;
     border-radius: 4px;
     margin-bottom: 32px;
+    margin-left: 8px;
+    margin-right: 8px;
     padding: 16px 16px;
 `;
 
-export const SigninFormButton = styled.button`
+export const SignupFormButton = styled.button`
     border: none;
     border-radius: 4px;
     color: #fff;

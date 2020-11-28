@@ -24,7 +24,7 @@ const SigninForm = () => {
                             <SigninFormLabel htmlFor='for'>Email</SigninFormLabel>
                             <SigninFormInput type='email' required />
                             <SigninFormLabel htmlFor='for'>Password</SigninFormLabel>
-                            <SigninFormInput type='password' reqiores />
+                            <SigninFormInput type='password' required />
                             <SigninFormButton type='submit'>Continue</SigninFormButton>
                         </Form>
                     </SigninFormContent>

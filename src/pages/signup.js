@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 
 import {
-    PageContainer
+    SignupForm,
 } from '../components';
 
 const Signup = () => {
 
     return (
         <div>
-           <PageContainer/>
+           <SignupForm/>
         </div>
     )
 }

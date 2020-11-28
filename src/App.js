@@ -4,7 +4,7 @@ import  {BrowserRouter as Router, Switch,  Route, Link, Redirect} from 'react-ro
 
 import './index.css';
 import {Home, About, Order, Menus, ReserveTable, Signin, Setting, Signup} from './pages';
-import { Navbar, Sidebar} from './components';
+import { Navbar, Sidebar, Footer} from './components';
 
 /* async function makeGetRequest(url) {
 
@@ -80,6 +80,7 @@ function App() {
           <Route path="/setting" component={Setting}/>
           <Route path="/signup" component={Signup}/>
         </Switch>
+        <Footer/>
       </div>
     </Router>
   );
