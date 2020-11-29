@@ -4,11 +4,22 @@ import {
     SignupForm,
 } from '../components';
 
-const Signup = () => {
+const initialUserFormData = Object.freeze({
+    username : "",
+    password : "",
+    firstname : "",
+    lastname :"",
+    email : "",
+    address: "",
+  });
+
+const Signup = ({user, setUser}) => {
+
+    const [userFormData, setUserFormData] = useState(initialUserFormData);
 
     return (
         <div>
-           <SignupForm/>
+           <SignupForm user={user} setUser={setUser} userFormData={userFormData} setUserFormData={setUserFormData}/>
         </div>
     )
 }

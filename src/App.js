@@ -30,6 +30,11 @@ const initialFormData = Object.freeze({
   description: "my good pizza",
 }); */
 
+const userInitialForm = Object.freeze({
+  username : "",
+  logged : false
+});
+
 function App() {
 
  /*  const [tests, setTests] = useState([]);
@@ -52,38 +57,48 @@ function App() {
   }
   */
 
-   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const openHandle = () => {
-        setIsOpen(!isOpen);
-    } 
+  const openHandle = () => {
+      setIsOpen(!isOpen);
+  }
+
+  const [user, setUser] = useState(userInitialForm);
+
+  console.log(user);
  
-    return (
-    <Router>
-      <div className="App">
-        {/* <ul>
-          {
-            tests.map((value, index) => {
-              return <li key={index}>{value.name}</li>
-            })
-          }
-        </ul> */}
-        <Sidebar isOpen={isOpen} openHandle={openHandle}/>
-        <Navbar openHandle={openHandle} />
-        <Switch>
-          <Route exact path="/" component={Home}/> 
-          <Route path="/about" component={About}/> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
-          <Route path="/order" component={Order}/>
-          <Route path="/menus" component={Menus}/>
-          <Route path="/reserveTable" component={ReserveTable}/>
-          <Route path="/signin" component={Signin}/>
-          <Route path="/setting" component={Setting}/>
-          <Route path="/signup" component={Signup}/>
-        </Switch>
-        <Footer/>
-      </div>
-    </Router>
-  );
+  return (
+  <Router>
+    <div className="App">
+      {/* <ul>
+        {
+          tests.map((value, index) => {
+            return <li key={index}>{value.name}</li>
+          })
+        }
+      </ul> */}
+      <Sidebar isOpen={isOpen} openHandle={openHandle}/>
+      <Navbar openHandle={openHandle} />
+      <Switch>
+        <Route exact path="/" component={Home}/> 
+        <Route path="/about" component={About}/> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
+        <Route path="/order" component={Order}/>
+        <Route path="/menus">
+          <Menus user={user} setUser={setUser}/>
+        </Route>
+        <Route path="/reserveTable" component={ReserveTable}/>
+        <Route path="/signin">
+          <Signin user={user} setUser={setUser}/>
+        </Route>
+        <Route path="/setting" component={Setting}/>
+        <Route path="/signup">
+          <Signup user={user} setUser={setUser}/>
+        </Route>
+      </Switch>
+      <Footer/>
+    </div>
+  </Router>
+);
 }
 
 export default App;

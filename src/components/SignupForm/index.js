@@ -26,7 +26,41 @@ async function makePostRequest(url, newUsername, newPassword, newFirstname, newL
     return res;
   }
 
-const SignupForm = () => {
+const SignupForm = ({user, setUser, userFormData, setUserFormData}) => {
+
+    const handleChange = (e) => {
+        setUserFormData({
+          ...userFormData,
+    
+          // Trimming any whitespace
+          [e.target.name]: e.target.value.trim()
+        });
+        console.log(e.target.name, e.target.value.trim() )
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault() // to prevent the browser for changes
+        
+        // ... submit to API
+        makePostRequest('http://localhost:3000/api/v1/signup',
+            userFormData.username,
+            userFormData.password,
+            userFormData.firstname,
+            userFormData.lastname,
+            userFormData.email,
+            userFormData.address)
+        .then(( data ) => {
+            if(data.status == 200){
+                setUser({
+                    "username": userFormData.username,
+                    "logged": true
+                })
+                console.log(user);
+            };
+        }
+        )
+        .catch((err) => console.log(err))
+    };
 
     return (
         <>
@@ -38,30 +72,30 @@ const SignupForm = () => {
                             <FormRow>
                                 <FormElement>
                                     <SignupFormLabel htmlFor='for'>Username</SignupFormLabel>
-                                    <SignupFormInput type='text' required />
+                                    <SignupFormInput name="username" onChange={handleChange} type='text' required />
                                 </FormElement>
                                 <FormElement>
                                     <SignupFormLabel htmlFor='for'>Password</SignupFormLabel>
-                                    <SignupFormInput type='password' required />
+                                    <SignupFormInput name="password" onChange={handleChange} type='password' required />
                                 </FormElement>
                             </FormRow>
 
                             <FormRow>
                                 <FormElement>
                                     <SignupFormLabel htmlFor='for'>Firstname</SignupFormLabel>
-                                    <SignupFormInput type='text' required />
+                                    <SignupFormInput name="firstname" onChange={handleChange} type='text' required />
                                 </FormElement>
                                 <FormElement>
                                     <SignupFormLabel htmlFor='for'>Lastname</SignupFormLabel>
-                                    <SignupFormInput type='text' required />
+                                    <SignupFormInput name="lastname" onChange={handleChange} type='text' required />
                                 </FormElement>
                             </FormRow>
 
                             <SignupFormLabel htmlFor='for'>Email</SignupFormLabel>
-                            <SignupFormInput type='Email' required />
+                            <SignupFormInput name="email" onChange={handleChange} type='Email' required />
                             <SignupFormLabel htmlFor='for'>address</SignupFormLabel>
-                            <SignupFormInput type='text' required />
-                            <SignupFormButton type='submit'>Continue</SignupFormButton>
+                            <SignupFormInput name="address" onChange={handleChange} type='text' required />
+                            <SignupFormButton type='submit' onClick={handleSubmit} >Continue</SignupFormButton>
                         </Form>
                     </SignupFormContent>
                 </SignupFormWrap>
