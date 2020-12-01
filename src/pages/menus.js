@@ -49,7 +49,6 @@ const Menus = () => {
             <FoodList foods={drinks}/>
             {/* <DessertList desserts={desserts}/>
             <Drinklist drinks={drinks}/> */}
-            <PageContainer/>
         </div>
     )
 }

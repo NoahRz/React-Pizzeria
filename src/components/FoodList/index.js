@@ -1,22 +1,23 @@
 import React, {useState} from 'react';
-import {Food} from'../index';
+import {FoodCard} from'../index';
 
-const PizzaList = ({foods}) => {
+import {FoodGrid} from './styles';
+
+const FoodList = ({foods}) => {
 
     return (
-        <div>
-            <ul>
+        <>
+            <FoodGrid>
                 {foods.map(food => ( // map permet de parcourir la liste todos
-                    <Food 
+                    <FoodCard 
                         key={food._id}
                         name={food.name}
                         description={food.description}/> // on doit spécifier une id lorsque l'on parcourt la liste, ça aide react au rending de la page
                         // todo c'est un objet todo
                 ) )}
-            </ul>
-
-        </div>
+            </FoodGrid>
+        </>
     )
 }
 
-export default PizzaList;
+export default FoodList;

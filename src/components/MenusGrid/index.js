@@ -1,7 +1,7 @@
 import React from 'react';
-import Pizza1 from '../../images/pizza1.jpg';
-import Pizza2 from '../../images/pizza2.jpg';
-import Pizza3 from '../../images/pizza3.jpg';
+import Pizza1 from '../../images/graziepizza.jpg';
+import Pizza2 from '../../images/insalatapizza.jpg';
+import Pizza3 from '../../images/patatapizza.jpg';
 import {Button} from '../ButtonStyles';
 import {
     MenusContainer,
