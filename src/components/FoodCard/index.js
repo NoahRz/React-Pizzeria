@@ -29,6 +29,7 @@ return res;
 
 const FoodCard = ({id, name, description}) => {
 
+    console.log([id]);
     const [hover, setHover] = useState(false);
 
     const onHover = () => {
@@ -40,10 +41,8 @@ const FoodCard = ({id, name, description}) => {
     
     // ... submit to API
     makePostOrderRequest('http://localhost:3000/api/v1/order',
-        [id])
-    .then(( data ) => {
-        console.log(data);
-        })
+        [{pizza:id, size:"m"}])
+    .then(( data ) => console.log(data))
     .catch((err) => console.log(err))
     };
 
