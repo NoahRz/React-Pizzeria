@@ -10,6 +10,9 @@ import Pizza1 from '../../images/graziepizza.jpg';
 
 import axios from 'axios';
 
+import {connect} from 'react-redux';
+import { addToCart } from '../../redux/shopping/shopping-actions';
+
 async function makePostOrderRequest(url, newPizzas) {
 
     let res = await axios.post(url, {
@@ -27,9 +30,9 @@ return res;
 }
 
 
-const FoodCard = ({id, name, description}) => {
+const FoodCard = ({productData, addToCart}) => {
 
-    console.log([id]);
+    //console.log([id]);
     const [hover, setHover] = useState(false);
 
     const onHover = () => {
@@ -41,7 +44,7 @@ const FoodCard = ({id, name, description}) => {
     
     // ... submit to API
     makePostOrderRequest('http://localhost:3000/api/v1/order',
-        [{pizza:id, size:"m"}])
+        [{pizza:1, size:"m"}])
     .then(( data ) => console.log(data))
     .catch((err) => console.log(err))
     };
@@ -50,11 +53,11 @@ const FoodCard = ({id, name, description}) => {
     return (
         <>
             <FoodCardContainer>
-                <FoodCardImage src= {Pizza1} />
+                <FoodCardImage src= {productData.image} />
                 <FoodCardWrapper>
-                    <h1>{name}</h1>
-                    <p>{description}</p>
-                    <Button to="/" onMouseEnter= {onHover} onMouseLeave={onHover} onClick={handleSubmit} primary="true" dark="true">
+                    <h1>{productData.name}</h1>
+                    <p>{productData.description}</p>
+                    <Button onMouseEnter= {onHover} onMouseLeave={onHover} onClick={()=> addToCart(productData._id)} primary="true" dark="true">
                             Order
                     </Button>
                 </FoodCardWrapper>
@@ -63,4 +66,11 @@ const FoodCard = ({id, name, description}) => {
     )
 }
 
-export default FoodCard;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addToCart: (id) => dispatch(addToCart(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(FoodCard);

@@ -3,7 +3,7 @@ import axios from 'axios';
 import  {BrowserRouter as Router, Switch,  Route, Link, Redirect} from 'react-router-dom';
 
 import './index.css';
-import {Home, About, Order, Menus, ReserveTable, Signin, Setting, Signup} from './pages';
+import {Home, About, Order, Menus, ReserveTable, Signin, Setting, Signup, CartPage} from './pages';
 import { Navbar, Sidebar, Footer} from './components';
 
 /* async function makeGetRequest(url) {
@@ -91,6 +91,7 @@ function App() {
           <Signin user={user} setUser={setUser}/>
         </Route>
         <Route path="/setting" component={Setting}/>
+        <Route path="/cart" component={CartPage}/>
         <Route path="/signup">
           <Signup user={user} setUser={setUser}/>
         </Route>

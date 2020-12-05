@@ -7,5 +7,7 @@ export { default as Message} from './Message/index';
 export { default as PageContainer} from './PageContainer/index';
 export { default as FoodList} from './FoodList/index';
 export { default as FoodCard} from './FoodCard/index';
+export { default as Cart} from './Cart/index';
+export { default as CartItem} from './Cart/CartItem/index';
 export { default as SigninForm} from './SigninForm/index';
 export { default as SignupForm} from './SignupForm/index';

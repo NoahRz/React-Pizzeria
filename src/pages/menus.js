@@ -3,7 +3,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {
-    PageContainer,
     FoodList
 } from '../components';
 
@@ -45,13 +44,13 @@ const Menus = () => {
     return (
         <div>
             <h1>Pizzas</h1>
-            <FoodList foods={pizzas}/>
-            <h1>Desserts</h1>
+            <FoodList/>
+            {/* <FoodList foods={pizzas}/> */}
+            {/* <h1>Desserts</h1>
+            <FoodList/>
             <FoodList foods={desserts}/>
             <h1>Drinks</h1>
-            <FoodList foods={drinks}/>
-            {/* <DessertList desserts={desserts}/>
-            <Drinklist drinks={drinks}/> */}
+            <FoodList/> */}
         </div>
     )
 }

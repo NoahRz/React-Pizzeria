@@ -13,7 +13,19 @@ import {
     NavBtnLink
 } from './styles';
 
-const Navbar = ({openHandle}) => {
+import { connect } from 'react-redux';
+
+const Navbar = ({ cart, openHandle}) => {
+
+    const [cartCount, setCartCount] = useState(0);
+
+    useEffect(() => {
+        let count = 0;
+        cart.forEach((item) => {
+            count += item.qty
+        });
+        setCartCount(count);
+    }, [cart, cartCount]);
 
     const scrollPoint = 100;
 
@@ -58,6 +70,9 @@ const Navbar = ({openHandle}) => {
                     <NavItem>
                         <NavLinks to="/setting">Setting</NavLinks>
                     </NavItem>
+                    <NavItem>
+                        <NavLinks to="/cart">cart {cartCount} </NavLinks>
+                    </NavItem>
                 </NavMenu>
                 <NavBtn>
                     <NavBtnLink to="/signup">Sign Up</NavBtnLink>
@@ -68,4 +83,10 @@ const Navbar = ({openHandle}) => {
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+     return {
+         cart : state.shop.cart
+     }
+}
+
+export default connect(mapStateToProps)(Navbar);
