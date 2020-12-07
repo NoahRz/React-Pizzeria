@@ -59,3 +59,9 @@ export const setProductsLoading = () => {
         type: actionTypes.PRODUCTS_LOADING
     }
 }
+
+export const removeAllItems = () => {
+    return {
+        type: actionTypes.REMOVE_ALL_ITEMS
+    }
+}

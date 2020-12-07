@@ -18,7 +18,7 @@ const Profile = ({ auth }) => {
 
     const [isAuthorized, setAuthorized] = useState(false);
 
-    const { token, isAuthenticated, user } = auth; // pas sur
+    const { token } = auth; // pas sur
 
     const config = {
         headers: { Authorization: `Bearer ${token}` }

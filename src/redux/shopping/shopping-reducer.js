@@ -51,6 +51,13 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true
             }
+        case actionTypes.REMOVE_ALL_ITEMS:
+            return {
+                ...state,
+                cart: [],
+                currentItem: null,
+                loading: false
+            }
         default:
             return state;
     }
