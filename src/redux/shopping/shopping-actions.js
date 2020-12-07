@@ -5,14 +5,28 @@ import { returnErrors } from '../auth/error-actions';
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
-    axios.get('http://localhost:3000/api/v1/pizzas').then(res => {
-        console.log("redux", res.data);
-        dispatch({
-            type: actionTypes.GET_PRODUCTS,
-            payload: res.data
-        })
-    }
-    )
+
+    axios.all([
+        axios.get('http://localhost:3000/api/v1/pizzas'),
+        axios.get('http://localhost:3000/api/v1/drinks'),
+        axios.get('http://localhost:3000/api/v1/desserts')
+    ])
+        .then(axios.spread((res1, res2, res3) => {
+            const res = res1.data.concat(res2.data).concat(res3.data);
+            dispatch({
+                type: actionTypes.GET_PRODUCTS,
+                payload: res
+            })
+        }));
+
+
+    /*     axios.get('http://localhost:3000/api/v1/pizzas').then(res => {
+            console.log("redux", res.data);
+            dispatch({
+                type: actionTypes.GET_PRODUCTS,
+                payload: res.data
+            })
+        }); */
 
     return {
         type: actionTypes.GET_PRODUCTS

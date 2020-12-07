@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Button} from '../ButtonStyles';
+import React, { useState, useEffect } from 'react';
+import { Button } from '../ButtonStyles';
 import {
     FoodCardContainer,
     FoodCardImage,
@@ -10,28 +10,29 @@ import Pizza1 from '../../images/graziepizza.jpg';
 
 import axios from 'axios';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { addToCart } from '../../redux/shopping/shopping-actions';
 
 async function makePostOrderRequest(url, newPizzas) {
 
     let res = await axios.post(url, {
-      pizzas : newPizzas
+        pizzas: newPizzas
     });
     return res;
-  }
+}
 
 async function makeUpdateUserRequest(url, newOrder) {
 
-let res = await axios.update(url, {
-    order : newOrder
-});
-return res;
+    let res = await axios.update(url, {
+        order: newOrder
+    });
+    return res;
 }
 
 
-const FoodCard = ({productData, addToCart}) => {
+const FoodCard = ({ productData, addToCart }) => {
 
+    console.log(productData)
     //console.log([id]);
     const [hover, setHover] = useState(false);
 
@@ -40,25 +41,26 @@ const FoodCard = ({productData, addToCart}) => {
     }
 
     const handleSubmit = (e) => {
-    e.preventDefault() // to prevent the browser for changes
-    
-    // ... submit to API
-    makePostOrderRequest('http://localhost:3000/api/v1/order',
-        [{pizza:1, size:"m"}])
-    .then(( data ) => console.log(data))
-    .catch((err) => console.log(err))
+        e.preventDefault() // to prevent the browser for changes
+
+        // ... submit to API
+        makePostOrderRequest('http://localhost:3000/api/v1/order',
+            [{ pizza: 1, size: "m" }])
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err))
     };
 
+    // pizza size : "s", "m", "l"
 
     return (
         <>
             <FoodCardContainer>
-                <FoodCardImage src= {productData.image} />
+                <FoodCardImage src={productData.image} />
                 <FoodCardWrapper>
                     <h1>{productData.name}</h1>
                     <p>{productData.description}</p>
-                    <Button onMouseEnter= {onHover} onMouseLeave={onHover} onClick={()=> addToCart(productData._id)} primary="true" dark="true">
-                            Order
+                    <Button onMouseEnter={onHover} onMouseLeave={onHover} onClick={() => addToCart(productData._id)} primary="true" dark="true">
+                        Order
                     </Button>
                 </FoodCardWrapper>
             </FoodCardContainer>
