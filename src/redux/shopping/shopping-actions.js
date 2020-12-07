@@ -1,5 +1,7 @@
 import axios from 'axios';
 import * as actionTypes from './shopping-types';
+import { tokenConfig } from '../auth/auth-actions';
+import { returnErrors } from '../auth/error-actions';
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
@@ -19,17 +21,17 @@ export const getProducts = () => dispatch => {
 
 export const addToCart = (itemID) => {
     return {
-        type : actionTypes.ADD_TO_CART,
+        type: actionTypes.ADD_TO_CART,
         payload: {
             _id: itemID
         }
-    }    
+    }
 }
 
 export const removeFromCart = (itemID) => {
     return {
         type: actionTypes.REMOVE_FROM_CART,
-        payload : {
+        payload: {
             _id: itemID
         }
     }

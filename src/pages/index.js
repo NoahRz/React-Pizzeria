@@ -9,3 +9,5 @@ export { default as Signin } from './signin';
 export { default as Setting } from './setting';
 export { default as CartPage } from './cart';
 export { default as Signup } from './signup';
+
+export { default as Profile } from './profile';

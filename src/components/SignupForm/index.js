@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, Component } from 'react';
 import {
     SignupFormInput,
     SignupFormWrap,
@@ -13,34 +13,64 @@ import {
 } from './styles';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+//import { register } from '../../redux/auth/auth-actions';
+import { addToUser } from '../../redux/auth/auth-actions';
+
 async function makePostRequest(url, newUsername, newPassword, newFirstname, newLastname, newEmail, newAddress) {
 
     let res = await axios.post(url, {
-      username : newUsername,
-      password : newPassword,
-      firstname : newFirstname,
-      lastname :newLastname,
-      email : newEmail,
-      address: newAddress,
+        username: newUsername,
+        password: newPassword,
+        firstname: newFirstname,
+        lastname: newLastname,
+        email: newEmail,
+        address: newAddress,
     });
     return res;
-  }
+}
 
-const SignupForm = ({user, setUser, userFormData, setUserFormData}) => {
+const SignupForm = ({ user, setUser, userFormData, setUserFormData, addToUser }) => {
+    //class SignupForm extends Component {
+    /* state = {
+        username: '',
+        password: '',
+        firstname: '',
+        lastname: '',
+        email: '',
+        address: '',
+        msg: null
+    }; */
+
 
     const handleChange = (e) => {
         setUserFormData({
-          ...userFormData,
-    
-          // Trimming any whitespace
-          [e.target.name]: e.target.value.trim()
+            ...userFormData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
         });
-        console.log(e.target.name, e.target.value.trim() )
+        console.log(e.target.name, e.target.value.trim())
+
+        //this.setState({ [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault() // to prevent the browser for changes
-        
+
+        console.log("machine");
+
+        // Attempt to register
+        //this.props.register("username", "password", "firstname", "lastname", "email@email.com", "address");
+
+        /*         register(
+                    userFormData.username,
+                    userFormData.password,
+                    userFormData.firstname,
+                    userFormData.lastname,
+                    userFormData.email,
+                    userFormData.address) */
+
         // ... submit to API
         makePostRequest('http://localhost:3000/api/v1/signup',
             userFormData.username,
@@ -49,19 +79,20 @@ const SignupForm = ({user, setUser, userFormData, setUserFormData}) => {
             userFormData.lastname,
             userFormData.email,
             userFormData.address)
-        .then(( data ) => {
-            if(data.status == 200){
-                setUser({
+            .then((res) => {
+                //if (data.status == 200) {
+                /* setUser({
                     "username": userFormData.username,
                     "logged": true
-                })
-                console.log(user);
-            };
-        }
-        )
-        .catch((err) => console.log(err))
+                }) */
+                console.log(res.data);
+                addToUser(res.data); //token
+                //};
+            }
+            )
+            .catch((err) => console.log(err))
     };
-
+    //render() {
     return (
         <>
             <SignupFormContainer>
@@ -102,6 +133,28 @@ const SignupForm = ({user, setUser, userFormData, setUserFormData}) => {
             </SignupFormContainer>
         </>
     )
+    //}
 }
 
-export default SignupForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        addToUser: (data) => dispatch(addToUser(data))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignupForm);
+
+/* const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+})
+
+export default connect(mapStateToProps, { register })(SignupForm); */
+
+/* const mapDispatchToProps = dispatch => {
+    return {
+        register: (username, password, firstname, lastname, email, address) => dispatch(register(username, password, firstname, lastname, email, address))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignupForm); */

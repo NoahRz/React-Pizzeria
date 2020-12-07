@@ -1,25 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
     SignupForm,
 } from '../components';
 
 const initialUserFormData = Object.freeze({
-    username : "",
-    password : "",
-    firstname : "",
-    lastname :"",
-    email : "",
+    username: "",
+    password: "",
+    firstname: "",
+    lastname: "",
+    email: "",
     address: "",
-  });
+    msg: null
+});
 
-const Signup = ({user, setUser}) => {
+const Signup = ({ user, setUser }) => {
 
     const [userFormData, setUserFormData] = useState(initialUserFormData);
 
     return (
         <div>
-           <SignupForm user={user} setUser={setUser} userFormData={userFormData} setUserFormData={setUserFormData}/>
+            <SignupForm user={user} setUser={setUser} userFormData={userFormData} setUserFormData={setUserFormData} />
         </div>
     )
 }

@@ -1,16 +1,16 @@
-import React, {useState, Component} from 'react';
-import {FoodCard} from'../index';
+import React, { useState, Component } from 'react';
+import { FoodCard } from '../index';
 
-import {FoodGrid} from './styles';
+import { FoodGrid } from './styles';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { getProducts } from '../../redux/shopping/shopping-actions';
 
 
-class FoodList extends Component{
+class FoodList extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("componentDidMount()");
         this.props.getProducts()
     }
@@ -24,7 +24,7 @@ class FoodList extends Component{
             <>
                 <FoodGrid>
                     {products.map((food) => (
-                        <FoodCard key={food._id} productData={food} /> 
+                        <FoodCard key={food._id} productData={food} />
                     ))}
                 </FoodGrid>
             </>
@@ -32,9 +32,9 @@ class FoodList extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({ products: state.shop})
+const mapStateToProps = (state) => ({ products: state.shop })
 
-export default connect(mapStateToProps, {getProducts})(FoodList);
+export default connect(mapStateToProps, { getProducts })(FoodList);
 
 
 /* const FoodList = ({foods}) => {
@@ -43,7 +43,7 @@ export default connect(mapStateToProps, {getProducts})(FoodList);
         <>
             <FoodGrid>
                 {foods.map((food) => ( // map permet de parcourir la liste todos
-                    <FoodCard 
+                    <FoodCard
                         key={food._id} // key for the map
                         id={food._id} // id to pass to the child
                         name={food.name}

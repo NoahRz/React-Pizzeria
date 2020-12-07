@@ -6,7 +6,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCESS,
     REGISTER_SUCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    ADD_TO_USER
 } from './types';
 
 const INITIAL_STATE = {
@@ -32,6 +33,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
             }
         case LOGIN_SUCESS:
         case REGISTER_SUCESS:
+            console.log("register sucess");
+            localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
                 ...action.payload,
@@ -49,6 +52,15 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 user: null,
                 isAuthenticated: false,
                 isLoading: false
+            }
+        case ADD_TO_USER:
+            console.log("add to user success");
+            localStorage.setItem('token', action.payload.token);
+            return {
+                ...state,
+                ...action.payload,
+                isAuthenticated: true,
+                isLoading: false,
             }
         default:
             return state;
