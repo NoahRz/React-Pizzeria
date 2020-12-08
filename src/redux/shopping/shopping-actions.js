@@ -33,29 +33,33 @@ export const getProducts = () => dispatch => {
     };
 }
 
-export const addToCart = (itemID) => {
+export const addToCart = (itemID, size, price) => {
     return {
         type: actionTypes.ADD_TO_CART,
         payload: {
-            _id: itemID
+            _id: itemID,
+            _size: size,
+            _price: price
         }
     }
 }
 
-export const removeFromCart = (itemID) => {
+export const removeFromCart = (itemID, size) => {
     return {
         type: actionTypes.REMOVE_FROM_CART,
         payload: {
-            _id: itemID
+            _id: itemID,
+            _size: size,
         }
     }
 }
 
-export const adjustQty = (itemID, value) => {
+export const adjustQty = (itemID, value, size) => {
     return {
         type: actionTypes.ADJUST_QTY,
         payload: {
             _id: itemID,
+            _size: size,
             qty: value,
         }
     }

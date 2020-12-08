@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {Button} from '../../ButtonStyles';
+import React, { useState, useEffect } from 'react';
+import { Button } from '../../ButtonStyles';
 import {
     FoodCardContainer,
     FoodCardImage,
     FoodCardWrapper,
 } from './styles';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { removeFromCart, adjustQty } from '../../../redux/shopping/shopping-actions';
 
 
-const CartItem = ({itemData, removeFromCart, adjustQty}) => {
+const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
 
     //console.log([id]);
     const [hover, setHover] = useState(false);
@@ -19,17 +19,17 @@ const CartItem = ({itemData, removeFromCart, adjustQty}) => {
         setHover(!hover)
     }
 
-    const  [input, setInput] = useState(itemData.qty);
+    const [input, setInput] = useState(itemData.qty);
 
     const onChangeHandler = (e) => {
-        setInput( e.target.value);
-        adjustQty(itemData._id, e.target.value);
+        setInput(e.target.value);
+        adjustQty(itemData._id, e.target.value, itemData._size);
     }
 
     return (
         <>
             <FoodCardContainer>
-                <FoodCardImage src= {itemData.image} />
+                <FoodCardImage src={itemData.image} />
                 <FoodCardWrapper>
                     <h1>{itemData.name}</h1>
                     <p>{itemData.description}</p>
@@ -41,8 +41,10 @@ const CartItem = ({itemData, removeFromCart, adjustQty}) => {
                         value={input}
                         onChange={onChangeHandler}
                     />
-                    <Button onMouseEnter= {onHover} onMouseLeave={onHover} onClick={()=> removeFromCart(itemData._id)} primary="true" dark="true">
-                            Remove
+                    <p>size : {itemData._size}</p>
+                    <p>price/unite : $ {itemData._price} </p>
+                    <Button to='#' onMouseEnter={onHover} onMouseLeave={onHover} onClick={() => removeFromCart(itemData._id, itemData._size)} primary="true" dark="true">
+                        Remove
                     </Button>
                 </FoodCardWrapper>
             </FoodCardContainer>
@@ -53,8 +55,8 @@ const CartItem = ({itemData, removeFromCart, adjustQty}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        removeFromCart: (id) => dispatch(removeFromCart(id)),
-        adjustQty : (id, value) => dispatch(adjustQty(id, value)) 
+        removeFromCart: (id, size) => dispatch(removeFromCart(id, size)),
+        adjustQty: (id, value, size) => dispatch(adjustQty(id, value, size))
     }
 }
 

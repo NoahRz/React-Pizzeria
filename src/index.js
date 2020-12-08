@@ -6,11 +6,14 @@ import { Provider } from 'react-redux';
 import store from "./redux/store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root')
 );
 
+/* <React.StrictMode>  Add to remove <React.StrictMode> because Material UI's team is not keeping up with the React devs
+  <Provider store={store}>
+    <App />
+  </Provider>
+</React.StrictMode> */

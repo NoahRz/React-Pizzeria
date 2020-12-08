@@ -9,6 +9,7 @@ import axios from 'axios';
 
 import { removeAllItems } from '../../redux/shopping/shopping-actions';
 
+import { v4 as uuidv4 } from 'uuid';
 
 async function makePostOrderRequest(url, newItems) {
 
@@ -44,7 +45,7 @@ const Cart = ({ cart, auth, removeAllItems }) => {
 
         cart.forEach(item => {
             items += item.qty;
-            price += item.qty * item.price;
+            price += item.qty * item._price;
         })
 
         setTotalItems(items);
@@ -88,7 +89,7 @@ const Cart = ({ cart, auth, removeAllItems }) => {
         <>
             <Grid>
                 {cart.map((item) => (
-                    <CartItem key={item._id} itemData={item} />
+                    <CartItem key={uuidv4()} itemData={item} />
                 ))}
             </Grid>
             <div>
