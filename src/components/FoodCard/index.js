@@ -22,6 +22,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import { Form } from '../SigninForm/styles';
+import { FormControl } from '@material-ui/core';
+
 
 
 const style = {
@@ -109,14 +113,17 @@ const FoodCard = ({ productData, addToCart }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Select
-                        value={size}
-                        onChange={handleChangeSize}
-                    >
-                        {product.size.map((size) => (
-                            <MenuItem key={size.value} value={size.name}>{size.name}</MenuItem>
-                        ))}
-                    </Select> {/* Problem when clicking the select : Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. */}
+                    <FormControl>
+                        <InputLabel>Size</InputLabel>
+                        <Select
+                            value={size}
+                            onChange={handleChangeSize}
+                        >
+                            {product.size.map((size) => (
+                                <MenuItem key={size.value} value={size.name}>{size.name}</MenuItem>
+                            ))}
+                        </Select> {/* Problem when clicking the select : Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Transition which is inside StrictMode. */}
+                    </FormControl>
                     <p> $ {price}</p>
                     <Button size="small" style={style} onClick={() => addToCart(product._id, size, price)}>
                         Order

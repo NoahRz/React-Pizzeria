@@ -11,6 +11,36 @@ import { removeAllItems } from '../../redux/shopping/shopping-actions';
 
 import { v4 as uuidv4 } from 'uuid';
 
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Divider from '@material-ui/core/Divider';
+
+import Box from '@material-ui/core/Box';
+
+
+
+import 'date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
+
+
+const style = {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 35,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+};
+
 async function makePostOrderRequest(url, newItems) {
 
     let res = await axios.post(url, {
@@ -84,6 +114,21 @@ const Cart = ({ cart, auth, removeAllItems }) => {
         }
     };
 
+    const [takeaway, setTakeaway] = React.useState(false);
+
+    const handleTakeawayChange = (e) => {
+        setTakeaway(e.target.checked);
+    };
+
+    useEffect(() => {
+        console.log("takeaway:", takeaway);
+    }, [])
+
+    const [selectedDate, setSelectedDate] = React.useState(Date.now());
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
     return (
         <>
@@ -92,14 +137,63 @@ const Cart = ({ cart, auth, removeAllItems }) => {
                     <CartItem key={uuidv4()} itemData={item} />
                 ))}
             </Grid>
-            <div>
-                <h4>Cart Summary</h4>
-                <div>
-                    <span>TOTAL: ( {totalItems} items)</span>
-                    <span>$ {totalPrice} </span>
-                </div>
-                <button onClick={handleSubmit}>Proceed To Checkout</button>
-            </div>
+            <Divider variant="middle" />
+            <Card>
+                <CardActionArea>
+                    <CardContent>
+                        <Typography variant="h5" component="h1" >
+                            Cart summary
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            TOTAL: ( {totalItems} items)
+                        </Typography>
+                        <Typography variant="h5" color="textSecondary" component="h4">
+                            Total price : $ {totalPrice}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardContent>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="MM/dd/yyyy"
+                            margin="normal"
+                            label="Order date"
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                        <KeyboardTimePicker
+                            margin="normal"
+                            id="time-picker"
+                            label="Time"
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change time',
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={takeaway}
+                                onChange={handleTakeawayChange}
+                                color="primary"
+                            />
+                        }
+                        label="Takeaway"
+                    />
+                </CardContent>
+                <CardActions>
+                    <Button size="small" style={style} onClick={handleSubmit}>
+                        Proceed To Checkout
+                    </Button>
+                </CardActions>
+            </Card>
 
         </>
     )
@@ -119,3 +213,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+
