@@ -21,8 +21,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 
-import Box from '@material-ui/core/Box';
-
 
 
 import 'date-fns';
@@ -41,10 +39,13 @@ const style = {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-async function makePostOrderRequest(url, newItems) {
+async function makePostOrderRequest(url, newItems, newOrderDate, newTakeaway) {
 
     let res = await axios.post(url, {
-        items: newItems
+        items: newItems,
+        orderDate: newOrderDate,
+        takeaway: newTakeaway
+
     });
     return res;
 }
@@ -59,8 +60,6 @@ async function makeUpdateUserRequest(url, orderID) {
 
 const Cart = ({ cart, auth, removeAllItems }) => {
 
-    // user connected
-    //
 
     const { isAuthenticated } = auth;
 
@@ -95,7 +94,7 @@ const Cart = ({ cart, auth, removeAllItems }) => {
         // ... submit to API
         if (isAuthenticated) {
             makePostOrderRequest('http://localhost:3000/api/v1/order',
-                handleCart())
+                handleCart(), selectedDate, takeaway)
                 .then((res) => {
                     console.log(res.data);
                     const orderId = res.data._id;
