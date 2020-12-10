@@ -6,8 +6,8 @@ import {
     FoodCardWrapper,
 } from './style';
 
-import pizza from '../../images/Vegetariana.jpg';
-
+/* import pizza from '../../images/Vegetariana.jpg';
+ */
 import axios from 'axios';
 
 import { connect } from 'react-redux';
@@ -97,7 +97,7 @@ const FoodCard = ({ productData, addToCart }) => {
 
     return (
         <>
-            <Card style={cardStyle}>
+            <Card style={cardStyle} >
                 <CardActionArea>
                     <CardMedia
                         component="img"

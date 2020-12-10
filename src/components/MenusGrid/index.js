@@ -1,7 +1,4 @@
 import React from 'react';
-import Pizza1 from '../../images/4 Fromaggi.jpg';
-import Pizza2 from '../../images/insalatapizza.jpg';
-import Pizza3 from '../../images/patatapizza.jpg';
 import { Button } from '../ButtonStyles';
 import {
     MenusContainer,
@@ -22,7 +19,7 @@ const MenusGrid = () => {
             <MenusWrapper>
                 <MenuBlock>
                     <MenuImageBg>
-                        <MenuImage src={Pizza1} />
+                        <MenuImage src={`/images/4 Fromaggi.jpg`} />
                     </MenuImageBg>
                     <MenuContent>
                         <MenuH1>Menu1</MenuH1>
@@ -45,12 +42,12 @@ const MenusGrid = () => {
                         </MenuBtnWrapper>
                     </MenuContent>
                     <MenuImageBg>
-                        <MenuImage src={Pizza2} />
+                        <MenuImage src={`/images/insalatapizza.jpg`} />
                     </MenuImageBg>
                 </MenuBlock>
                 <MenuBlock>
                     <MenuImageBg>
-                        <MenuImage src={Pizza3} />
+                        <MenuImage src={`/images/patatapizza.jpg`} />
                     </MenuImageBg>
                     <MenuContent>
                         <MenuH1>Menu3</MenuH1>

@@ -6,6 +6,9 @@ import {
   FoodList
 } from '../components';
 
+import Grid from '@material-ui/core/Grid';
+
+
 async function makeGetRequest(url) {
 
   let res = await axios.get(url);
@@ -43,7 +46,12 @@ const Menus = () => {
 
   return (
     <div>
-      <FoodList />
+      <Grid containe alignItems="center"
+        justify="center">
+        <Grid item>
+          <FoodList />
+        </Grid>
+      </Grid>
       {/* <FoodList foods={pizzas}/> */}
       {/* <h1>Desserts</h1>
             <FoodList/>
