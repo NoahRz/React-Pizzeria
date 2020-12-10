@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FoodGrid = styled.div`
   display: grid;
-  grid-column-gap: 50px;
+  grid-column-gap: 20px;
   grid-template-columns: auto auto auto;
   padding: 10px;
 `

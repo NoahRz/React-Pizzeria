@@ -6,7 +6,7 @@ import {
     FoodCardWrapper,
 } from './style';
 
-import Pizza1 from '../../images/graziepizza.jpg';
+import pizza from '../../images/Vegetariana.jpg';
 
 import axios from 'axios';
 
@@ -23,7 +23,6 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Form } from '../SigninForm/styles';
 import { FormControl } from '@material-ui/core';
 
 
@@ -38,6 +37,9 @@ const style = {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
+const cardStyle = {
+    height: "100%",
+};
 
 async function makePostOrderRequest(url, newPizzas) {
 
@@ -57,6 +59,7 @@ async function makeUpdateUserRequest(url, newOrder) {
 
 
 const FoodCard = ({ productData, addToCart }) => {
+
 
     const product = productData;
 
@@ -94,21 +97,20 @@ const FoodCard = ({ productData, addToCart }) => {
 
     return (
         <>
-            <Card>
+            <Card style={cardStyle}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
                         alt="Contemplative Reptile"
-                        height="140"
-                        image={product.image}
-                        title="Contemplative Reptile"
+                        height="300"
+                        src={`/images/${product.name}.jpg`}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                             {product.name}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {product.description}
+                            {(product.description && product.description.length > 20) ? product.description.substr(0, 20) + "..." : " "}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

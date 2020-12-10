@@ -85,7 +85,7 @@ const Cart = ({ cart, auth, removeAllItems }) => {
     const handleCart = () => {
         let order = [];
         cart.forEach(item => {
-            order.push({ pizza: item._id, size: 's', quantity: item.qty })
+            order.push({ item: item._id, size: item._size, quantity: item.qty })
         })
         return order;
     }

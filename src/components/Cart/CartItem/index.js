@@ -74,9 +74,8 @@ const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
                     <CardMedia
                         component="img"
                         alt="Contemplative Reptile"
-                        height="140"
-                        image={itemData.image}
-                        title="Contemplative Reptile"
+                        height="300"
+                        src={`/images/${itemData.name}.jpg`}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">

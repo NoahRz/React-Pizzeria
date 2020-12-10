@@ -1,8 +1,8 @@
 import React from 'react';
-import Pizza1 from '../../images/graziepizza.jpg';
+import Pizza1 from '../../images/4 Fromaggi.jpg';
 import Pizza2 from '../../images/insalatapizza.jpg';
 import Pizza3 from '../../images/patatapizza.jpg';
-import {Button} from '../ButtonStyles';
+import { Button } from '../ButtonStyles';
 import {
     MenusContainer,
     MenusWrapper,
@@ -22,14 +22,14 @@ const MenusGrid = () => {
             <MenusWrapper>
                 <MenuBlock>
                     <MenuImageBg>
-                        <MenuImage src= {Pizza1} />
+                        <MenuImage src={Pizza1} />
                     </MenuImageBg>
                     <MenuContent>
                         <MenuH1>Menu1</MenuH1>
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
                             <Button to="/" primary="true" dark="true">
-                            Buy
+                                Buy
                             </Button>
                         </MenuBtnWrapper>
                     </MenuContent>
@@ -40,24 +40,24 @@ const MenusGrid = () => {
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
                             <Button to="/" primary="true" dark="true">
-                            Buy
+                                Buy
                             </Button>
                         </MenuBtnWrapper>
                     </MenuContent>
                     <MenuImageBg>
-                        <MenuImage src= {Pizza2} />
+                        <MenuImage src={Pizza2} />
                     </MenuImageBg>
                 </MenuBlock>
                 <MenuBlock>
-                <MenuImageBg>
-                        <MenuImage src= {Pizza3} />
+                    <MenuImageBg>
+                        <MenuImage src={Pizza3} />
                     </MenuImageBg>
                     <MenuContent>
                         <MenuH1>Menu3</MenuH1>
                         <MenuP>Description</MenuP>
                         <MenuBtnWrapper>
                             <Button to="/" primary="true" dark="true">
-                            Buy
+                                Buy
                             </Button>
                         </MenuBtnWrapper>
                     </MenuContent>

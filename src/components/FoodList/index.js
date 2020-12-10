@@ -7,6 +7,10 @@ import { connect } from 'react-redux';
 
 import { getProducts } from '../../redux/shopping/shopping-actions';
 
+import Grid from '@material-ui/core/Grid';
+
+
+
 
 class FoodList extends Component {
 
