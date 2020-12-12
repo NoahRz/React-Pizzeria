@@ -1,29 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import './index.css';
 import { Home, About, Order, Menus, ReserveTable, Signin, Setting, Signup, CartPage, Profile } from './pages';
 import { Navbar, Sidebar, Footer } from './components';
-
-/* async function makeGetRequest(url) {
-  let res = await axios.get(url);
-  let data = res.data;
-  
-  return data;
-}
-async function makePostRequest(url) {
-  let res = await axios.post(url, {
-    name : "a pizza",
-    description : "my a pizza"
-  });
- // console.log("2",res);
-  return res;
-}
-const initialFormData = Object.freeze({
-  name: "good pizza",
-  description: "my good pizza",
-}); */
 
 const userInitialForm = Object.freeze({
   username: "",
@@ -31,23 +11,6 @@ const userInitialForm = Object.freeze({
 });
 
 function Pizzeria() {
-
-  /*  const [tests, setTests] = useState([]);
-   useEffect(() => {
-     //addTest();
-     //fetchTests();
-   }, [])
-   const fetchTests = () => {
-     makeGetRequest('http://localhost:3000/api/v1/pizzas')
-     .then((data) => setTests(data))
-     .catch((err) => console.log(err))
-   }
-   const addTest = () => {
-     makePostRequest('http://localhost:3000/api/v1/pizza', initialFormData.name, initialFormData.description)
-     .then((data) => console.log(data))
-     .catch((err) => console.log(err))
-   }
-   */
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -62,13 +25,6 @@ function Pizzeria() {
   return (
     <Router>
       <div className="App">
-        {/* <ul>
-        {
-          tests.map((value, index) => {
-            return <li key={index}>{value.name}</li>
-          })
-        }
-      </ul> */}
         <Sidebar isOpen={isOpen} openHandle={openHandle} />
         <Navbar openHandle={openHandle} />
         <Switch>

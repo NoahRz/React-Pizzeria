@@ -50,4 +50,12 @@ const mapStateToProps = (state) => ({
     drinks: state.drinkShop.products
 })
 
-export default connect(mapStateToProps, { getPizzas, getDesserts, getDrinks })(FoodList);
+const mapDispatchToProps = dispatch => {
+    return {
+        getPizzas: () => dispatch(getPizzas()),
+        getDesserts: () => dispatch(getDesserts()),
+        getDrinks: () => dispatch(getDrinks()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodList);

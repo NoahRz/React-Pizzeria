@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import {
     SignupFormInput,
     SignupFormWrap,
@@ -31,17 +31,6 @@ async function makePostRequest(url, newUsername, newPassword, newFirstname, newL
 }
 
 const SignupForm = ({ user, setUser, userFormData, setUserFormData, addToUser }) => {
-    //class SignupForm extends Component {
-    /* state = {
-        username: '',
-        password: '',
-        firstname: '',
-        lastname: '',
-        email: '',
-        address: '',
-        msg: null
-    }; */
-
 
     const handleChange = (e) => {
         setUserFormData({
@@ -58,19 +47,6 @@ const SignupForm = ({ user, setUser, userFormData, setUserFormData, addToUser })
     const handleSubmit = (e) => {
         e.preventDefault() // to prevent the browser for changes
 
-        console.log("machine");
-
-        // Attempt to register
-        //this.props.register("username", "password", "firstname", "lastname", "email@email.com", "address");
-
-        /*         register(
-                    userFormData.username,
-                    userFormData.password,
-                    userFormData.firstname,
-                    userFormData.lastname,
-                    userFormData.email,
-                    userFormData.address) */
-
         // ... submit to API
         makePostRequest('http://localhost:3000/api/v1/signup',
             userFormData.username,
@@ -80,11 +56,6 @@ const SignupForm = ({ user, setUser, userFormData, setUserFormData, addToUser })
             userFormData.email,
             userFormData.address)
             .then((res) => {
-                //if (data.status == 200) {
-                /* setUser({
-                    "username": userFormData.username,
-                    "logged": true
-                }) */
                 console.log(res.data);
                 addToUser(res.data); //token
                 //};
@@ -92,7 +63,6 @@ const SignupForm = ({ user, setUser, userFormData, setUserFormData, addToUser })
             )
             .catch((err) => console.log(err))
     };
-    //render() {
     return (
         <>
             <SignupFormContainer>
@@ -143,18 +113,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(null, mapDispatchToProps)(SignupForm);
-
-/* const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
-})
-
-export default connect(mapStateToProps, { register })(SignupForm); */
-
-/* const mapDispatchToProps = dispatch => {
-    return {
-        register: (username, password, firstname, lastname, email, address) => dispatch(register(username, password, firstname, lastname, email, address))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(SignupForm); */

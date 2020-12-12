@@ -1,6 +1,6 @@
 // the cart page
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
     Cart
 } from '../components';
@@ -8,8 +8,7 @@ import {
 const CartPage = () => {
     return (
         <div>
-            <h1>Pizzas</h1>
-            <Cart/>
+            <Cart />
         </div>
     )
 }

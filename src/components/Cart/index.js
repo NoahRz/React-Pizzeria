@@ -61,7 +61,6 @@ async function makeUpdateUserRequest(url, orderID) {
 
 const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, removeAllDesserts, removeAllDrinks }) => {
 
-
     const { isAuthenticated } = auth;
 
     const [totalItems, setTotalItems] = useState(0);
@@ -129,10 +128,6 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
     const handleTakeawayChange = (e) => {
         setTakeaway(e.target.checked);
     };
-
-    useEffect(() => {
-        console.log("takeaway:", takeaway);
-    }, [])
 
     const [selectedDate, setSelectedDate] = React.useState(Date.now());
 
