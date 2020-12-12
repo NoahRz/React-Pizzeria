@@ -1,12 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import {
-    FoodCardContainer,
-    FoodCardImage,
-    FoodCardWrapper,
-} from './styles';
-
-import { connect } from 'react-redux';
-import { removeFromCart, adjustQty } from '../../../redux/shopping/shopping-actions';
+import React, { useState } from 'react';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -29,15 +21,7 @@ const style = {
 };
 
 
-
 const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
-
-    //console.log([id]);
-    const [hover, setHover] = useState(false);
-
-    const onHover = () => {
-        setHover(!hover)
-    }
 
     const [input, setInput] = useState(itemData.qty);
 
@@ -48,27 +32,6 @@ const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
 
     return (
         <>
-            {/* <FoodCardContainer>
-                <FoodCardImage src={itemData.image} />
-                <FoodCardWrapper>
-                    <h1>{itemData.name}</h1>
-                    <p>{itemData.description}</p>
-                    <input
-                        min="1"
-                        type="number"
-                        id="qty"
-                        name="qty"
-                        value={input}
-                        onChange={onChangeHandler}
-                    />
-                    <p>size : {itemData._size}</p>
-                    <p>price/unite : $ {itemData._price} </p>
-                    <Button to='#' onMouseEnter={onHover} onMouseLeave={onHover} onClick={() => removeFromCart(itemData._id, itemData._size)} primary="true" dark="true">
-                        Remove
-                    </Button>
-                </FoodCardWrapper>
-            </FoodCardContainer> */}
-
             <Card>
                 <CardActionArea>
                     <CardMedia
@@ -106,7 +69,7 @@ const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
                     />
                     <TextField
                         disabled
-                        label="Price/unite"
+                        label="Price/unit"
                         defaultValue={"$ " + itemData._price}
                         variant="outlined"
                     />
@@ -115,17 +78,8 @@ const CartItem = ({ itemData, removeFromCart, adjustQty }) => {
                         </Button>
                 </CardActions>
             </Card>
-
         </>
     )
 }
 
-
-const mapDispatchToProps = dispatch => {
-    return {
-        removeFromCart: (id, size) => dispatch(removeFromCart(id, size)),
-        adjustQty: (id, value, size) => dispatch(adjustQty(id, value, size))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(CartItem);
+export default CartItem;

@@ -11,7 +11,7 @@ import {
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { addToCart } from '../../redux/shopping/shopping-actions';
+import { addToCart } from '../../redux/drinkShop/actions';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

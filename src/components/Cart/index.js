@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CartItem } from '../index';
+import PizzaItem from './pizzaCart';
+import DessertItem from './dessertCart';
+import DrinkItem from './drinkCart';
 
 import { Grid } from './styles';
 
@@ -7,7 +9,9 @@ import { connect } from 'react-redux';
 
 import axios from 'axios';
 
-import { removeAllItems } from '../../redux/shopping/shopping-actions';
+import { removeAllItems as removeAllDrinks } from '../../redux/drinkShop/actions';
+import { removeAllItems as removeAllDesserts } from '../../redux/dessertShop/actions';
+import { removeAllItems as removeAllPizzas } from '../../redux/pizzaShop/actions';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,13 +25,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
 
-
-
 import 'date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
 
 const style = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -39,13 +39,14 @@ const style = {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-async function makePostOrderRequest(url, newItems, newOrderDate, newTakeaway) {
+async function makePostOrderRequest(url, newPizzas, newDesserts, newDrinks, newOrderDate, newTakeaway) {
 
     let res = await axios.post(url, {
-        items: newItems,
+        pizzas: newPizzas,
+        desserts: newDesserts,
+        drinks: newDrinks,
         orderDate: newOrderDate,
         takeaway: newTakeaway
-
     });
     return res;
 }
@@ -58,12 +59,10 @@ async function makeUpdateUserRequest(url, orderID) {
     return res;
 }
 
-const Cart = ({ cart, auth, removeAllItems }) => {
+const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, removeAllDesserts, removeAllDrinks }) => {
 
 
     const { isAuthenticated } = auth;
-
-    console.log("cart :", cart)
 
     const [totalItems, setTotalItems] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -72,7 +71,17 @@ const Cart = ({ cart, auth, removeAllItems }) => {
         let items = 0;
         let price = 0;
 
-        cart.forEach(item => {
+        pizzaCart.forEach(item => {
+            items += item.qty;
+            price += item.qty * item._price;
+        })
+
+        dessertCart.forEach(item => {
+            items += item.qty;
+            price += item.qty * item._price;
+        })
+
+        drinkCart.forEach(item => {
             items += item.qty;
             price += item.qty * item._price;
         })
@@ -80,21 +89,21 @@ const Cart = ({ cart, auth, removeAllItems }) => {
         setTotalItems(items);
         setTotalPrice(price);
 
-    }, [cart, totalItems, totalPrice, setTotalItems, setTotalPrice])
+    }, [pizzaCart, dessertCart, drinkCart, totalItems, totalPrice, setTotalItems, setTotalPrice])
 
-    const handleCart = () => {
-        let order = [];
+    const transformToList = (cart) => {
+        let res = [];
         cart.forEach(item => {
-            order.push({ item: item._id, size: item._size, quantity: item.qty })
+            res.push({ item: item._id, size: item._size, quantity: item.qty })
         })
-        return order;
+        return res;
     }
 
     const handleSubmit = () => {
         // ... submit to API
         if (isAuthenticated) {
             makePostOrderRequest('http://localhost:3000/api/v1/order',
-                handleCart(), selectedDate, takeaway)
+                transformToList(pizzaCart), transformToList(dessertCart), transformToList(drinkCart), selectedDate, takeaway)
                 .then((res) => {
                     console.log(res.data);
                     const orderId = res.data._id;
@@ -102,7 +111,9 @@ const Cart = ({ cart, auth, removeAllItems }) => {
                     makeUpdateUserRequest(url.concat(auth.user._id), orderId) // add order id to user
                         .then((res) => {
                             console.log(res.data);
-                            removeAllItems();
+                            removeAllPizzas();
+                            removeAllDesserts();
+                            removeAllDrinks();
                         })
                         .catch((err) => console.log(err))
 
@@ -131,12 +142,29 @@ const Cart = ({ cart, auth, removeAllItems }) => {
 
     return (
         <>
+            <h1>Pizza</h1>
             <Grid>
-                {cart.map((item) => (
-                    <CartItem key={uuidv4()} itemData={item} />
+                {pizzaCart.map((item) => (
+                    <PizzaItem key={uuidv4()} itemData={item} />
                 ))}
             </Grid>
+
+            <h1>Dessert</h1>
+            <Grid>
+                {dessertCart.map((item) => (
+                    <DessertItem key={uuidv4()} itemData={item} />
+                ))}
+            </Grid>
+
+            <h1>Drink</h1>
+            <Grid>
+                {drinkCart.map((item) => (
+                    <DrinkItem key={uuidv4()} itemData={item} />
+                ))}
+            </Grid>
+
             <Divider variant="middle" />
+
             <Card>
                 <CardActionArea>
                     <CardContent>
@@ -193,21 +221,24 @@ const Cart = ({ cart, auth, removeAllItems }) => {
                     </Button>
                 </CardActions>
             </Card>
-
         </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        cart: state.shop.cart,
+        pizzaCart: state.pizzaShop.cart,
+        dessertCart: state.dessertShop.cart,
+        drinkCart: state.drinkShop.cart,
         auth: state.auth
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        removeAllItems: () => dispatch(removeAllItems())
+        removeAllPizzas: () => dispatch(removeAllPizzas()),
+        removeAllDesserts: () => dispatch(removeAllDesserts()),
+        removeAllDrinks: () => dispatch(removeAllDrinks())
     }
 }
 

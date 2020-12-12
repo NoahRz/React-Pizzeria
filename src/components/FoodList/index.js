@@ -1,61 +1,53 @@
-import React, { useState, Component } from 'react';
-import { FoodCard } from '../index';
+import React, { useEffect } from 'react';
+import DessertCard from './dessertCard';
+import PizzaCard from './pizzaCard';
+import DrinkCard from './drinkCard';
 
 import { FoodGrid } from './styles';
 
 import { connect } from 'react-redux';
 
-import { getProducts } from '../../redux/shopping/shopping-actions';
-
-import Grid from '@material-ui/core/Grid';
-
-
+import { getProducts as getPizzas } from '../../redux/pizzaShop/actions';
+import { getProducts as getDesserts } from '../../redux/dessertShop/actions';
+import { getProducts as getDrinks } from '../../redux/drinkShop/actions';
 
 
-class FoodList extends Component {
+const FoodList = ({ pizzas, getPizzas, desserts, getDesserts, drinks, getDrinks }) => {
 
-    componentDidMount() {
-        console.log("componentDidMount()");
-        this.props.getProducts()
-    }
-
-    render() {
-
-        const { products } = this.props.products;
-        console.log("products :", products);
-
-        return (
-            <>
-                <FoodGrid>
-                    {products.map((food) => (
-                        <FoodCard key={food._id} productData={food} />
-                    ))}
-                </FoodGrid>
-            </>
-        )
-    }
-}
-
-const mapStateToProps = (state) => ({ products: state.shop })
-
-export default connect(mapStateToProps, { getProducts })(FoodList);
-
-
-/* const FoodList = ({foods}) => {
+    useEffect(() => {
+        getPizzas();
+        getDesserts();
+        getDrinks();
+    }, [getPizzas, getDesserts, getDrinks])
 
     return (
         <>
+            <h1>Pizza</h1>
             <FoodGrid>
-                {foods.map((food) => ( // map permet de parcourir la liste todos
-                    <FoodCard
-                        key={food._id} // key for the map
-                        id={food._id} // id to pass to the child
-                        name={food.name}
-                        description={food.description}
-                        /> // on doit spécifier une id lorsque l'on parcourt la liste, ça aide react au rending de la page
-                        // todo c'est un objet todo
-                ) )}
+                {pizzas.map((pizza) => (
+                    <PizzaCard key={pizza._id} productData={pizza} />
+                ))}
+            </FoodGrid>
+            <h1>Dessert</h1>
+            <FoodGrid>
+                {desserts.map((dessert) => (
+                    <DessertCard key={dessert._id} productData={dessert} />
+                ))}
+            </FoodGrid>
+            <h1>Drink</h1>
+            <FoodGrid>
+                {drinks.map((drink) => (
+                    <DrinkCard key={drink._id} productData={drink} />
+                ))}
             </FoodGrid>
         </>
     )
-} */
+}
+
+const mapStateToProps = (state) => ({
+    pizzas: state.pizzaShop.products,
+    desserts: state.dessertShop.products,
+    drinks: state.drinkShop.products
+})
+
+export default connect(mapStateToProps, { getPizzas, getDesserts, getDrinks })(FoodList);

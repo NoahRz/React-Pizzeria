@@ -20,21 +20,26 @@ import { connect } from 'react-redux';
 
 
 
-const Navbar = ({ cart, auth, openHandle }) => {
+const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
 
     const { isAuthenticated, user } = auth; // pas sur
 
-    console.log("isAuthenticated:", isAuthenticated);
 
     const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         let count = 0;
-        cart.forEach((item) => {
+        pizzaCart.forEach((item) => {
+            count += item.qty
+        });
+        dessertCart.forEach((item) => {
+            count += item.qty
+        });
+        drinkCart.forEach((item) => {
             count += item.qty
         });
         setCartCount(count);
-    }, [cart, cartCount]);
+    }, [pizzaCart, dessertCart, drinkCart, cartCount]);
 
     const scrollPoint = 100;
 
@@ -97,7 +102,9 @@ const Navbar = ({ cart, auth, openHandle }) => {
 
 const mapStateToProps = state => {
     return {
-        cart: state.shop.cart,
+        pizzaCart: state.pizzaShop.cart,
+        dessertCart: state.dessertShop.cart,
+        drinkCart: state.drinkShop.cart,
         auth: state.auth
     }
 }

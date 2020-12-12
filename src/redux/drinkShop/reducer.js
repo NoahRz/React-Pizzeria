@@ -1,4 +1,4 @@
-import * as actionTypes from './shopping-types';
+import * as actionTypes from './types';
 
 const INITIAL_STATE = {
     products: [], // {id, title, descr, price, img}
@@ -9,13 +9,13 @@ const INITIAL_STATE = {
 
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case actionTypes.GET_PRODUCTS:
+        case actionTypes.GET_DRINKS:
             return {
                 ...state,
                 products: action.payload,
                 loading: false
             };
-        case actionTypes.ADD_TO_CART:
+        case actionTypes.ADD_DRINK_TO_CART:
             // Get the items data from the products array
             console.log("size:", action.payload._size);
             const item = state.products.find(prod => prod._id === action.payload._id);
@@ -29,12 +29,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                 )
                     : [...state.cart, { ...item, _size: action.payload._size, _price: action.payload._price, qty: 1 }]
             };
-        case actionTypes.REMOVE_FROM_CART:
+        case actionTypes.REMOVE_DRINK_FROM_CART:
             return {
                 ...state,
                 cart: state.cart.filter((item) => (item._id !== action.payload._id || item._size !== action.payload._size))
             };
-        case actionTypes.ADJUST_QTY:
+        case actionTypes.ADJUST_DRINK_QTY:
             return {
                 ...state,
                 cart: state.cart.map((item) =>
@@ -42,17 +42,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
                         { ...item, qty: +action.payload.qty } : item // + : to turn into integer
                 )
             };
-        case actionTypes.LOAD_CURRENT_ITEM:
-            return {
-                ...state,
-                currentItem: action.payload
-            };
-        case actionTypes.PRODUCTS_LOADING:
+        case actionTypes.DRINKS_LOADING:
             return {
                 ...state,
                 loading: true
             }
-        case actionTypes.REMOVE_ALL_ITEMS:
+        case actionTypes.REMOVE_ALL_DRINKS:
             return {
                 ...state,
                 cart: [],
