@@ -24,7 +24,7 @@ export const loadUser = () => (dispatch, getState) => {
             payload: res.data
         }))
         .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status));
+            //dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: AUTH_ERROR
             })
@@ -39,26 +39,15 @@ export const addToUser = (data) => {
 }
 
 // Register user
-
-export const register = (newUsername, newPassword, newFirstname, newLastname, newEmail, newAddress) => dispatch => {
+export const register = (user) => dispatch => {
     // Headers
     const config = { // je sais pas si utile
         headers: {
             'Content-Type': 'application/json'
         }
     }
-
-    console.log("register")
-
     axios.post('http://localhost:3000/api/v1/signup', // doit retourner les user data et son token
-        {
-            username: newUsername,
-            password: newPassword,
-            firstname: newFirstname,
-            lastname: newLastname,
-            email: newEmail,
-            address: newAddress,
-        }
+        user
     )
         .then(res =>
             dispatch({
@@ -75,11 +64,36 @@ export const register = (newUsername, newPassword, newFirstname, newLastname, ne
 }
 
 // Login user
-export const login = (data) => {
-    return {
-        type: LOGIN_SUCESS,
-        payload: data
+export const login = (user) => dispatch => {
+
+    // Headers
+    const config = { // je sais pas si utile
+        headers: {
+            'Content-Type': 'application/json'
+        }
     }
+
+    axios.post('http://localhost:3000/api/v1/signin', // doit retourner les user data et son token
+        user
+    )
+        .then(res =>
+            dispatch({
+                type: LOGIN_SUCESS,
+                payload: res.data
+            })
+        )
+        .catch(err => {
+            //console.log("myerr", err.response.data)
+            dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
+            dispatch({
+                type: LOGIN_FAIL
+            })
+        })
+
+    /*     return {
+            type: LOGIN_SUCESS,
+            payload: data
+        } */
 }
 
 // Logout user

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SigninFormInput,
     SigninFormWrap,
@@ -10,23 +10,19 @@ import {
     Form,
     SigninFormButton
 } from './styles';
+import Alert from '@material-ui/lab/Alert';
 
-import axios from 'axios';
-
+import { useHistory } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth/auth-actions';
 
-async function makePostRequest(url, newEmail, newPassword) {
 
-    let res = await axios.post(url, {
-        email: newEmail,
-        password: newPassword
-    });
-    return res;
-}
+const SigninForm = ({ userFormData, setUserFormData, login, error, isAuthenticated }) => {
 
-const SigninForm = ({ userFormData, setUserFormData, login }) => {
+    const [msg, setMsg] = useState(null);
+
+    const history = useHistory();
 
     const handleChange = (e) => {
         setUserFormData({
@@ -35,28 +31,37 @@ const SigninForm = ({ userFormData, setUserFormData, login }) => {
             // Trimming any whitespace
             [e.target.name]: e.target.value.trim()
         });
-        console.log(e.target.name, e.target.value.trim())
     };
 
     const handleSubmit = (e) => {
         e.preventDefault() // to prevent the browser for changes
 
-        console.log("machine");
+        const user = {
+            email: userFormData.email,
+            password: userFormData.password
+        }
 
-        // ... submit to API
-        makePostRequest('http://localhost:3000/api/v1/signin',
-            userFormData.email,
-            userFormData.password
-        )
-            .then((res) => {
-
-                console.log(res.data);
-                login(res.data); //token
-                //};
-            }
-            )
-            .catch((err) => console.log(err))
+        login(user);
+        if (isAuthenticated) {
+            this.props.history.push('/')
+        }
     };
+
+    useEffect(() => {
+        // Check for register error
+        if (error.id === 'LOGIN_FAIL') {
+            console.log("error: ", error)
+            setMsg(error.msg.msg);
+        } else {
+            setMsg(null);
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            history.goBack();
+        }
+    }, [isAuthenticated])
 
     return (
         <>
@@ -64,6 +69,7 @@ const SigninForm = ({ userFormData, setUserFormData, login }) => {
                 <SigninFormWrap>
                     <SigninFormContent>
                         <Form action="#">
+                            {msg ? <Alert severity="error">{msg}</Alert> : null}
                             <SigninLogo to="/">🍕 Pizza</SigninLogo>
                             <SigninFormH1>Sign in to your account</SigninFormH1>
                             <SigninFormLabel htmlFor='for'>Email</SigninFormLabel>
@@ -79,12 +85,17 @@ const SigninForm = ({ userFormData, setUserFormData, login }) => {
     )
 }
 
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+});
+
 const mapDispatchToProps = dispatch => {
     return {
         login: (data) => dispatch(login(data))
     }
 }
 
-export default connect(null, mapDispatchToProps)(SigninForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SigninForm);
 
 //export default SigninForm;
