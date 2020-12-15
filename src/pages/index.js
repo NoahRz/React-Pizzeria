@@ -6,7 +6,6 @@ export { default as Menus } from './menus';
 export { default as myOrder } from './myOrder';
 export { default as ReserveTable } from './reserveTable';
 export { default as Signin } from './signin';
-export { default as Setting } from './setting';
 export { default as CartPage } from './cartPage';
 export { default as Signup } from './signup';
 

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 const myOrder = ({ auth }) => {
 
+    const { user } = auth;
+
     return (
         <div>
             <></>

@@ -24,10 +24,14 @@ import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Divider from '@material-ui/core/Divider';
+import Alert from '@material-ui/lab/Alert';
+
+
 
 import 'date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { set } from 'date-fns';
 
 const style = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -65,6 +69,9 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
 
     const [totalItems, setTotalItems] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const [errorMsg, setErrorMsg] = useState(false);
+    const [sucessMsg, setSuccessMsg] = useState(false);
 
     useEffect(() => {
         let items = 0;
@@ -113,12 +120,14 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
                             removeAllPizzas();
                             removeAllDesserts();
                             removeAllDrinks();
+                            setSuccessMsg(true);
                         })
                         .catch((err) => console.log(err))
 
                 }) // received order id
                 .catch((err) => console.log(err))
         } else {
+            setErrorMsg(true);
             console.log("Please sign in");
         }
     };
@@ -137,6 +146,7 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
 
     return (
         <>
+            {sucessMsg ? <Alert severity="success" style={{ marginTop: "10px", marginBottom: "5px" }}>Thank you for your order!</Alert> : null}
             <h1>Pizza</h1>
             <Grid>
                 {pizzaCart.map((item) => (
@@ -215,6 +225,7 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
                         Proceed To Checkout
                     </Button>
                 </CardActions>
+                {errorMsg ? <Alert severity="error" style={{ marginTop: "10px", marginBottom: "5px" }}>Please sign in</Alert> : null}
             </Card>
         </>
     )

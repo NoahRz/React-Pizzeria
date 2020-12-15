@@ -25,20 +25,20 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
 
     const location = useLocation();
 
-    const [onScrollOption, setOnScrollOption] = useState(false);
+    const { isAuthenticated, user } = auth; // pas sur
+
+    const [cartCount, setCartCount] = useState(0);
+
+    const [scrollOption, setScrollOption] = useState(false);
 
     useEffect(() => {
         if (location.pathname === "/") {
-            setOnScrollOption(true);
+            setScrollOption(true);
         } else {
-            setOnScrollOption(false);
+            setScrollOption(false);
         }
     }, [location])
 
-    const { isAuthenticated, user } = auth; // pas sur
-
-
-    const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         let count = 0;
@@ -72,9 +72,9 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
 
     return (
         <>
-            <Nav scroll={scroll} onScrollOption={onScrollOption}>
+            <Nav scroll={scroll} scrollOption={scrollOption}>
                 <NavbarContainer>
-                    <NavLogo exact to='/'>🍕 Pizzeria</NavLogo>
+                    <NavLogo to='/'>🍕 Pizzeria</NavLogo>
                     <MobileIcon onClick={openHandle}>
                         <FaBars />
                     </MobileIcon>
@@ -86,13 +86,10 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
                             <NavLinks to="/menus">Menus</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="/order">My order(s)</NavLinks>
+                            <NavLinks to="/myorder">My order(s)</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to="/reservetable">Reserve your table</NavLinks>
-                        </NavItem>
-                        <NavItem>
-                            <NavLinks to="/setting">Setting</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to="/cart">

@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Nav = styled.nav`
-    background : ${({ onScrollOption, scroll }) => (onScrollOption ? "rgba(0, 0, 0, " + scroll + ")" : "rgba(0, 0, 0, 1)")}; // rgba(0, 0, 0, ${({ scroll }) => (scroll)});
+    background : ${({ scrollOption, scroll }) => (scrollOption ? "rgba(0, 0, 0, " + scroll + ")" : "rgba(0, 0, 0, 1)")}; // rgba(0, 0, 0, ${({ scroll }) => (scroll)});
     transition: 0.8s all ease;
     height: 80px;
-    margin-top: ${({ onScrollOption }) => (onScrollOption ? "-80px" : "0px")};
+    margin-top: ${({ scrollOption }) => (scrollOption ? "-80px" : "0px")};
     display: flex;
     justify-content: center;
     align-items: center;

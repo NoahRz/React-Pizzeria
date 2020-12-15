@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     SidebarContainer,
     Icon,
@@ -10,36 +10,67 @@ import {
     SidebarRoute
 } from './styles';
 
-const Sidebar = ({isOpen, openHandle}) => {
+import { logout } from '../../redux/auth/auth-actions';
+
+import { connect } from 'react-redux';
+
+import { FaShoppingCart } from 'react-icons/fa';
+
+
+const Sidebar = ({ isOpen, openHandle, pizzaCart, dessertCart, drinkCart, logout, auth }) => {
+
+    const { isAuthenticated, user } = auth; // pas sur
+
+    const [cartCount, setCartCount] = useState(0);
+
+    useEffect(() => {
+        let count = 0;
+        pizzaCart.forEach((item) => {
+            count += item.qty
+        });
+        dessertCart.forEach((item) => {
+            count += item.qty
+        });
+        drinkCart.forEach((item) => {
+            count += item.qty
+        });
+        setCartCount(count);
+    }, [pizzaCart, dessertCart, drinkCart, cartCount]);
+
+
     return (
         <>
-            <SidebarContainer isOpen= {isOpen}>
-                <Icon  onClick={openHandle}>
+            <SidebarContainer isOpen={isOpen}>
+                <Icon onClick={openHandle}>
                     <CloseIcon />
                 </Icon>
                 <SidebarWrapper>
                     <SidebarMenu>
-                        <SidebarLink to="/about">
+                        <SidebarLink to="/about" onClick={openHandle}>
                             About
                         </SidebarLink>
-                        <SidebarLink to="/order">
-                            Order
-                        </SidebarLink>
-                        <SidebarLink to="/menus">
+                        <SidebarLink to="/menus" onClick={openHandle}>
                             Menus
                         </SidebarLink>
-                        <SidebarLink to="/reservetable">
+                        <SidebarLink to="/myorder" onClick={openHandle}>
+                            My order(s)
+                        </SidebarLink>
+                        <SidebarLink to="/reservetable" onClick={openHandle}>
                             Reserve your table
                         </SidebarLink>
-                        <SidebarLink to="/signin">
-                            Sign in
+                        <SidebarLink to="/cart" onClick={openHandle}>
+                            <FaShoppingCart style={{ marginRight: "6" }} />{cartCount}
                         </SidebarLink>
-                        <SidebarLink to="/setting">
-                            Setting
+                        <SidebarLink to="/reservetable" onClick={openHandle}>
+                            Reserve your table
                         </SidebarLink>
+                        {isAuthenticated ? <SidebarLink to="/" onClick={() => {
+                            logout();
+                            openHandle();
+                        }}>Sign out </SidebarLink> : <SidebarLink to="/signin" onClick={openHandle}>Sign in </SidebarLink>}
                     </SidebarMenu>
                     <SideBtnWrap>
-                        <SidebarRoute to="/sign">Sign Up</SidebarRoute>
+                        {isAuthenticated ? <SidebarRoute to="/signup" onClick={openHandle} >{`Welcome ${user.username}`}</SidebarRoute> : <SidebarRoute to="/signup" onClick={openHandle} >Sign Up</SidebarRoute>}
                     </SideBtnWrap>
                 </SidebarWrapper>
             </SidebarContainer>
@@ -47,4 +78,19 @@ const Sidebar = ({isOpen, openHandle}) => {
     )
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+    return {
+        pizzaCart: state.pizzaShop.cart,
+        dessertCart: state.dessertShop.cart,
+        drinkCart: state.drinkShop.cart,
+        auth: state.auth
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(logout())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
