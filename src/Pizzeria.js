@@ -20,7 +20,6 @@ function Pizzeria() {
 
   const [user, setUser] = useState(userInitialForm);
 
-  console.log(user);
 
   return (
     <Router>

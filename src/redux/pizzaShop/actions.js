@@ -7,7 +7,6 @@ export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
 
     axios.get('http://localhost:3000/api/v1/pizzas').then(res => {
-        console.log("redux", res.data);
         dispatch({
             type: actionTypes.GET_PIZZAS,
             payload: res.data

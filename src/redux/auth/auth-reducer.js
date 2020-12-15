@@ -33,7 +33,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
             }
         case LOGIN_SUCESS:
         case REGISTER_SUCESS:
-            console.log("register sucess");
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
@@ -54,7 +53,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
                 isLoading: false
             }
         case ADD_TO_USER:
-            console.log("add to user success");
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,

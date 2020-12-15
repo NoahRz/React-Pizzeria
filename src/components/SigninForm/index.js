@@ -50,7 +50,6 @@ const SigninForm = ({ userFormData, setUserFormData, login, error, isAuthenticat
     useEffect(() => {
         // Check for register error
         if (error.id === 'LOGIN_FAIL') {
-            console.log("error: ", error)
             setMsg(error.msg.msg);
         } else {
             setMsg(null);

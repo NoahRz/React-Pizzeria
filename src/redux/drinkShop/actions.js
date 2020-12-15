@@ -6,7 +6,6 @@ import * as actionTypes from './types';
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
     axios.get('http://localhost:3000/api/v1/drinks').then(res => {
-        console.log("redux", res.data);
         dispatch({
             type: actionTypes.GET_DRINKS,
             payload: res.data

@@ -27,11 +27,9 @@ const Profile = ({ auth }) => {
     const fetchData = () => {
         makeGetRequest('http://localhost:3000/api/v1/profile', config)
             .then((res) => {
-                console.log(res);
                 setAuthorized(true)
             })
             .catch((err) => {
-                console.log("err myAuth :", err);
                 setAuthorized(false);
             })
     }

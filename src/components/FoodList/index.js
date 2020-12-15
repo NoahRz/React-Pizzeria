@@ -3,7 +3,8 @@ import DessertCard from './dessertCard';
 import PizzaCard from './pizzaCard';
 import DrinkCard from './drinkCard';
 
-import { FoodGrid } from './styles';
+//import { FoodGrid } from './styles';
+import Grid from '@material-ui/core/Grid';
 
 import { connect } from 'react-redux';
 
@@ -23,23 +24,29 @@ const FoodList = ({ pizzas, getPizzas, desserts, getDesserts, drinks, getDrinks 
     return (
         <>
             <h1>Pizza</h1>
-            <FoodGrid>
+            <Grid container spacing={3}>
                 {pizzas.map((pizza) => (
-                    <PizzaCard key={pizza._id} productData={pizza} />
+                    <Grid item xs={12} sm={6} md={4} key={pizza._id}>
+                        <PizzaCard key={pizza._id} productData={pizza} />
+                    </Grid>
                 ))}
-            </FoodGrid>
+            </Grid>
             <h1>Dessert</h1>
-            <FoodGrid>
+            <Grid container spacing={3}>
                 {desserts.map((dessert) => (
-                    <DessertCard key={dessert._id} productData={dessert} />
+                    <Grid item xs={12} sm={6} md={4} key={dessert._id}>
+                        <DessertCard key={dessert._id} productData={dessert} />
+                    </Grid>
                 ))}
-            </FoodGrid>
+            </Grid>
             <h1>Drink</h1>
-            <FoodGrid>
+            <Grid container spacing={3}>
                 {drinks.map((drink) => (
-                    <DrinkCard key={drink._id} productData={drink} />
+                    <Grid item xs={12} sm={6} md={4} key={drink._id}>
+                        <DrinkCard key={drink._id} productData={drink} />
+                    </Grid>
                 ))}
-            </FoodGrid>
+            </Grid>
         </>
     )
 }

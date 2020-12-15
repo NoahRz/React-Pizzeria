@@ -17,7 +17,6 @@ const shopReducer = (state = INITIAL_STATE, action) => {
             };
         case actionTypes.ADD_DRINK_TO_CART:
             // Get the items data from the products array
-            console.log("size:", action.payload._size);
             const item = state.products.find(prod => prod._id === action.payload._id);
             // Check if item is in cart already 
             const inCart = state.cart.find((item) => (item._id === action.payload._id && item._size === action.payload._size) ? true : false);

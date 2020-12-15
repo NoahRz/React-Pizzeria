@@ -83,7 +83,6 @@ export const login = (user) => dispatch => {
             })
         )
         .catch(err => {
-            //console.log("myerr", err.response.data)
             dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
             dispatch({
                 type: LOGIN_FAIL

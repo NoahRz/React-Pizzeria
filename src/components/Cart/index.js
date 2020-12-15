@@ -3,7 +3,9 @@ import PizzaItem from './pizzaCart';
 import DessertItem from './dessertCart';
 import DrinkItem from './drinkCart';
 
-import { Grid } from './styles';
+//import { Grid } from './styles';
+import Grid from '@material-ui/core/Grid';
+
 
 import { connect } from 'react-redux';
 
@@ -31,7 +33,6 @@ import Alert from '@material-ui/lab/Alert';
 import 'date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker, KeyboardTimePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import { set } from 'date-fns';
 
 const style = {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -111,12 +112,10 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
             makePostOrderRequest('http://localhost:3000/api/v1/order',
                 transformToList(pizzaCart), transformToList(dessertCart), transformToList(drinkCart), selectedDate, takeaway)
                 .then((res) => {
-                    console.log(res.data);
                     const orderId = res.data._id;
                     const url = 'http://localhost:3000/api/v1/updateOrder/'
                     makeUpdateUserRequest(url.concat(auth.user._id), orderId) // add order id to user
                         .then((res) => {
-                            console.log(res.data);
                             removeAllPizzas();
                             removeAllDesserts();
                             removeAllDrinks();
@@ -128,7 +127,6 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
                 .catch((err) => console.log(err))
         } else {
             setErrorMsg(true);
-            console.log("Please sign in");
         }
     };
 
@@ -147,28 +145,34 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
     return (
         <>
             {sucessMsg ? <Alert severity="success" style={{ marginTop: "10px", marginBottom: "5px" }}>Thank you for your order!</Alert> : null}
-            <h1>Pizza</h1>
-            <Grid>
+            <h1 style={{ margin: "10px" }}>Pizza</h1>
+            <Grid container spacing={3}>
                 {pizzaCart.map((item) => (
-                    <PizzaItem key={uuidv4()} itemData={item} />
+                    <Grid item xs={12} sm={6} md={4} key={uuidv4()}>
+                        <PizzaItem key={uuidv4()} itemData={item} />
+                    </Grid>
                 ))}
             </Grid>
 
-            <h1>Dessert</h1>
-            <Grid>
+            <h1 style={{ margin: "10px" }}>Dessert</h1>
+            <Grid container spacing={3}>
                 {dessertCart.map((item) => (
-                    <DessertItem key={uuidv4()} itemData={item} />
+                    <Grid item xs={12} sm={6} md={4} key={uuidv4()}>
+                        <DessertItem key={uuidv4()} itemData={item} />
+                    </Grid>
                 ))}
             </Grid>
 
-            <h1>Drink</h1>
-            <Grid>
+            <h1 style={{ margin: "10px" }}>Drink</h1>
+            <Grid container spacing={3}>
                 {drinkCart.map((item) => (
-                    <DrinkItem key={uuidv4()} itemData={item} />
+                    <Grid item xs={12} sm={6} md={4} key={uuidv4()}>
+                        <DrinkItem key={uuidv4()} itemData={item} />
+                    </Grid>
                 ))}
             </Grid>
 
-            <Divider variant="middle" />
+            <Divider style={{ marginTop: "20px" }} variant="middle" />
 
             <Card>
                 <CardActionArea>
