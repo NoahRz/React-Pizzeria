@@ -101,7 +101,7 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
     const transformToList = (cart) => {
         let res = [];
         cart.forEach(item => {
-            res.push({ item: item._id, size: item._size, quantity: item.qty })
+            res.push({ item: item._id, name: item.name, size: item._size, quantity: item.qty })
         })
         return res;
     }

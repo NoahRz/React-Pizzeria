@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {
-    myOrder
+    Order
 } from '../components';
 
-const Order = () => {
+const myOrder = () => {
 
     return (
         <div>
-            <myOrder />
+            <Order />
         </div>
     )
 }
 
-export default Order;
+export default myOrder;

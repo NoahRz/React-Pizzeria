@@ -2,15 +2,26 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import UserOrder from './UserOrder';
 
-const myOrder = ({ auth }) => {
+import Alert from '@material-ui/lab/Alert';
 
-    //const { user } = auth;
+
+
+const Order = ({ auth }) => {
+
+    const { user, isAuthenticated } = auth;
+
+    console.log("isAuthenticated:", isAuthenticated)
 
     return (
-        <div>
-            <></>
-        </div>
+        <>
+            {
+                isAuthenticated ?
+                    <UserOrder user={user} /> :
+                    <Alert severity="error" style={{ marginTop: "10px", marginBottom: "5px" }}>Please sign in</Alert>
+            }
+        </>
     )
 }
 
@@ -20,4 +31,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(myOrder);
+export default connect(mapStateToProps)(Order);
