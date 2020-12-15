@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
-    PageContainer
+    myOrder
 } from '../components';
 
 const Order = () => {
 
     return (
         <div>
-           <PageContainer/>
+            <myOrder />
         </div>
     )
 }

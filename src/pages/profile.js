@@ -18,7 +18,7 @@ const Profile = ({ auth }) => {
 
     const [isAuthorized, setAuthorized] = useState(false);
 
-    const { token } = auth; // pas sur
+    const { token } = auth;
 
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -31,7 +31,7 @@ const Profile = ({ auth }) => {
                 setAuthorized(true)
             })
             .catch((err) => {
-                console.log(err);
+                console.log("err myAuth :", err);
                 setAuthorized(false);
             })
     }
@@ -55,5 +55,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Profile);
-
-//export default Profile;

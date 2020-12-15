@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import {
     Nav,
     NavbarContainer,
@@ -21,6 +22,18 @@ import { connect } from 'react-redux';
 
 
 const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
+
+    const location = useLocation();
+
+    const [onScrollOption, setOnScrollOption] = useState(false);
+
+    useEffect(() => {
+        if (location.pathname === "/") {
+            setOnScrollOption(true);
+        } else {
+            setOnScrollOption(false);
+        }
+    }, [location])
 
     const { isAuthenticated, user } = auth; // pas sur
 
@@ -59,7 +72,7 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
 
     return (
         <>
-            <Nav scroll={scroll}>
+            <Nav scroll={scroll} onScrollOption={onScrollOption}>
                 <NavbarContainer>
                     <NavLogo exact to='/'>🍕 Pizzeria</NavLogo>
                     <MobileIcon onClick={openHandle}>
@@ -70,10 +83,10 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
                             <NavLinks to="/about">About</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="/order">Order</NavLinks>
+                            <NavLinks to="/menus">Menus</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="/menus">Menus</NavLinks>
+                            <NavLinks to="/order">My order(s)</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to="/reservetable">Reserve your table</NavLinks>
@@ -82,7 +95,9 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
                             <NavLinks to="/setting">Setting</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="/cart">cart {cartCount} </NavLinks>
+                            <NavLinks to="/cart">
+                                <FaShoppingCart style={{ marginRight: "6" }} />{cartCount}
+                            </NavLinks>
                         </NavItem>
                         <NavItem>
                             {isAuthenticated ? <Logout /> : <GuestLinks />}

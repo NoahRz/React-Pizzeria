@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as actionTypes from './types';
-import { tokenConfig } from '../auth/auth-actions';
-import { returnErrors } from '../auth/error-actions';
+//import { tokenConfig } from '../auth/auth-actions';
+//import { returnErrors } from '../auth/error-actions';
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());

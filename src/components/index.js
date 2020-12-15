@@ -10,3 +10,4 @@ export { default as Cart } from './Cart/index';
 export { default as CartItem } from './Cart/drinkCart/index';
 export { default as SigninForm } from './SigninForm/index';
 export { default as SignupForm } from './SignupForm/index';
+export { default as myOrder } from './myOrder/index';

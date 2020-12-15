@@ -1,6 +1,6 @@
 // the about page
 
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
     PageContainer
@@ -10,7 +10,7 @@ const About = () => {
 
     return (
         <div>
-           <PageContainer/>
+            <PageContainer />
         </div>
     )
 }

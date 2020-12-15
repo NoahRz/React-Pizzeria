@@ -41,11 +41,11 @@ export const addToUser = (data) => {
 // Register user
 export const register = (user) => dispatch => {
     // Headers
-    const config = { // je sais pas si utile
+    /* const config = { // je sais pas si utile
         headers: {
             'Content-Type': 'application/json'
         }
-    }
+    } */
     axios.post('http://localhost:3000/api/v1/signup', // doit retourner les user data et son token
         user
     )
@@ -67,11 +67,11 @@ export const register = (user) => dispatch => {
 export const login = (user) => dispatch => {
 
     // Headers
-    const config = { // je sais pas si utile
+    /* const config = { // je sais pas si utile
         headers: {
             'Content-Type': 'application/json'
         }
-    }
+    } */
 
     axios.post('http://localhost:3000/api/v1/signin', // doit retourner les user data et son token
         user
