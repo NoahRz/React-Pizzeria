@@ -10,7 +10,7 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCESS,
     REGISTER_SUCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
 } from './types';
 
 // check token and load user
@@ -100,6 +100,28 @@ export const logout = () => {
     return {
         type: LOGOUT_SUCESS
     };
+}
+
+export const reloadUser = () => (dispatch, getState) => {
+    const isAuthenticated = getState().auth.isAuthenticated;
+    if (isAuthenticated) {
+        const userId = getState().auth.user._id;
+        const url = 'http://localhost:3000/api/v1/user/';
+        //user loading
+        dispatch({ type: USER_LOADING });
+
+        axios.get(url.concat(userId))
+            .then(res => dispatch({
+                type: USER_LOADED,
+                payload: res.data
+            }))
+            .catch(err => {
+                //dispatch(returnErrors(err.response.data, err.response.status));
+                dispatch({
+                    type: AUTH_ERROR
+                })
+            })
+    }
 }
 
 // Setup config/headers and token

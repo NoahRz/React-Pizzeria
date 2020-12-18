@@ -14,6 +14,7 @@ import axios from 'axios';
 import { removeAllItems as removeAllDrinks } from '../../redux/drinkShop/actions';
 import { removeAllItems as removeAllDesserts } from '../../redux/dessertShop/actions';
 import { removeAllItems as removeAllPizzas } from '../../redux/pizzaShop/actions';
+import { reloadUser } from '../../redux/auth/auth-actions';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -64,7 +65,7 @@ async function makeUpdateUserRequest(url, orderID) {
     return res;
 }
 
-const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, removeAllDesserts, removeAllDrinks }) => {
+const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, removeAllDesserts, removeAllDrinks, reloadUser }) => {
 
     const { isAuthenticated } = auth;
 
@@ -113,15 +114,17 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
                 transformToList(pizzaCart), transformToList(dessertCart), transformToList(drinkCart), selectedDate, takeaway)
                 .then((res) => {
                     const orderId = res.data._id;
-                    const url = 'http://localhost:3000/api/v1/updateOrder/'
+                    const url = 'http://localhost:3000/api/v1/updateOrder/';
                     makeUpdateUserRequest(url.concat(auth.user._id), orderId) // add order id to user
                         .then((res) => {
                             removeAllPizzas();
                             removeAllDesserts();
                             removeAllDrinks();
                             setSuccessMsg(true);
+                            reloadUser();
                         })
-                        .catch((err) => console.log(err))
+                        .catch((err) => console.log(err));
+
 
                 }) // received order id
                 .catch((err) => console.log(err))
@@ -172,7 +175,7 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
                 ))}
             </Grid>
 
-            <Divider style={{ marginTop: "20px" }} variant="middle" />
+            <Divider style={{ marginTop: "200px" }} variant="middle" />
 
             <Card>
                 <CardActionArea>
@@ -248,7 +251,8 @@ const mapDispatchToProps = dispatch => {
     return {
         removeAllPizzas: () => dispatch(removeAllPizzas()),
         removeAllDesserts: () => dispatch(removeAllDesserts()),
-        removeAllDrinks: () => dispatch(removeAllDrinks())
+        removeAllDrinks: () => dispatch(removeAllDrinks()),
+        reloadUser: () => dispatch(reloadUser())
     }
 }
 

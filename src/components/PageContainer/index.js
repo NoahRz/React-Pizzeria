@@ -1,13 +1,12 @@
 import React from 'react';
 import {
     PageCont,
-} from'./styles';
+} from './styles';
 
 const PageContainer = () => {
-    return(
+    return (
         <>
-            <PageCont>
-            </PageCont>
+            <PageCont />
         </>
     );
 }

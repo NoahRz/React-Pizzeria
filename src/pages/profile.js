@@ -46,6 +46,7 @@ const Profile = ({ auth }) => {
     )
 }
 
+
 const mapStateToProps = state => {
     return {
         auth: state.auth

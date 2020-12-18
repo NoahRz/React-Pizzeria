@@ -8,8 +8,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Grid from '@material-ui/core/Grid';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import Divider from '@material-ui/core/Divider';
@@ -19,7 +17,6 @@ import Divider from '@material-ui/core/Divider';
 import { MdExpandMore } from 'react-icons/md';
 
 async function getOrderRequest(url) {
-
     let res = await axios.get(url);
     return res.data;
 }
@@ -45,7 +42,9 @@ const OrderElements = ({ orderId }) => {
                 setTakeaway(takeaway);
                 setCreatedAt(createdAt)
             })
-            .catch((err) => console.log(err))
+            .catch(err => {
+                console.log(err);
+            })
 
     }, [])
 
@@ -61,8 +60,8 @@ const OrderElements = ({ orderId }) => {
     }
 
     return (
-        <>
-            <Grid container style={{ margin: "10px" }}>
+        <div style={{ margin: "100px 0px" }} >
+            <Grid container>
                 <Grid item xs={3}>
                 </Grid>
                 <Grid item xs={6}>
@@ -81,26 +80,22 @@ const OrderElements = ({ orderId }) => {
                                 <Grid item xs={6}>
                                     <Grid container>
                                         {pizzas.map((pizza) => (
-                                            <Grid item xs={12}>
-                                                <div key={uuidv4()}>
+                                            <Grid item xs={12} key={uuidv4()}>
+                                                <div>
                                                     <div>  <h2>{pizza.name}</h2> Size : {pizza.size} Quantity: {pizza.quantity} {takeaway}</div>
                                                 </div>
                                             </Grid>
-
-                                            /*                                 <div key={uuidv4()}>
-                                                                                <p> {pizza.name} {pizza.size} {pizza.quantity} {takeaway}</p>
-                                                                            </div> */
                                         ))}
                                         {desserts.map((dessert) => (
-                                            <Grid item xs={12}>
-                                                <div key={uuidv4()}>
+                                            <Grid item xs={12} key={uuidv4()}>
+                                                <div>
                                                     <div> <h2>{dessert.name}</h2> Size : {dessert.size} Quantity: {dessert.quantity}</div>
                                                 </div>
                                             </Grid>
                                         ))}
                                         {drinks.map(drink => (
-                                            <Grid item xs={12}>
-                                                <div key={uuidv4()}>
+                                            <Grid item xs={12} key={uuidv4()}>
+                                                <div>
                                                     <ListItemText> <h2>{drink.name}</h2> Size : {drink.size} Quantity: {drink.quantity}</ListItemText>
                                                 </div>
                                             </Grid>
@@ -116,7 +111,7 @@ const OrderElements = ({ orderId }) => {
                 <Grid item xs={3}>
                 </Grid>
             </Grid >
-        </>
+        </div>
     )
 }
 
