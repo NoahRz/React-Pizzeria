@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './index.css';
-import { Home, About, myOrder, Menus, ReserveTable, Signin, Signup, CartPage, Profile } from './pages';
+import { Home, AboutPage, myOrder, Menus, ReserveTable, Signin, Signup, CartPage, Profile } from './pages';
 import { Navbar, Sidebar, Footer } from './components';
 
 const userInitialForm = Object.freeze({
@@ -28,7 +28,7 @@ function Pizzeria() {
         <Navbar openHandle={openHandle} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} /> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
+          <Route path="/about" component={AboutPage} /> {/* when we go to the path (route) "/about" we are gonna render the component "About"*/}
           <Route path="/myorder" component={myOrder} />
           <Route path="/menus">
             <Menus user={user} setUser={setUser} />

@@ -1,17 +1,15 @@
-// the about page
-
 import React from 'react';
 
 import {
-    About
-} from '../components';
+    ComingSoonMsg
+} from '../index';
 
 const AboutPage = () => {
 
     return (
-        <div>
-            <About />
-        </div>
+        <>
+            <ComingSoonMsg />
+        </>
     )
 }
 

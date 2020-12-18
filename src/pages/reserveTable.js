@@ -1,15 +1,15 @@
 import React from 'react';
 
 import {
-    PageContainer
+    ComingSoonMsg
 } from '../components';
 
 const ReserveTable = () => {
 
     return (
-        <div>
-            <PageContainer />
-        </div>
+        <>
+            <ComingSoonMsg />
+        </>
     )
 }
 

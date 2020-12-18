@@ -1,7 +1,7 @@
 // to simplify the exportation
 
 export { default as Home } from './home';
-export { default as About } from './about';
+export { default as AboutPage } from './about';
 export { default as Menus } from './menus';
 export { default as myOrder } from './myOrder';
 export { default as ReserveTable } from './reserveTable';

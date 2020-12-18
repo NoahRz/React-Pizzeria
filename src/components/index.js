@@ -11,3 +11,5 @@ export { default as CartItem } from './Cart/drinkCart/index';
 export { default as SigninForm } from './SigninForm/index';
 export { default as SignupForm } from './SignupForm/index';
 export { default as Order } from './myOrder/index';
+export { default as About } from './About/index';
+export { default as ComingSoonMsg } from './ComingSoonMsg/index';

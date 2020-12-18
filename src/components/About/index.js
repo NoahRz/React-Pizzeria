@@ -1,14 +1,13 @@
 import React from 'react';
-/* import {
-    AboutContainer,
-    AboutWrapper
-} from'./styles'; */
+import { ComingSoonMsg } from '../index';
 
 const About = () => {
-    return(
-        <>
-        </>
-    );
-}
 
+    return (
+        <>
+            <ComingSoonMsg />
+        </>
+    )
+
+}
 export default About;
