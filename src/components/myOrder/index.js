@@ -16,7 +16,7 @@ const Order = ({ auth }) => {
             {
                 isAuthenticated ?
                     <UserOrder user={user} /> :
-                    <AlertMessage />
+                    <AlertMessage msg={"Please sign in"} />
             }
         </>
     )
