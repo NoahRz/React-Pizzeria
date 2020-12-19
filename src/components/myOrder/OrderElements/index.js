@@ -31,7 +31,7 @@ const OrderElements = ({ orderId }) => {
     const [takeaway, setTakeaway] = useState("");
 
     useEffect(() => {
-        const url = 'http://localhost:3000/api/v1/order/';
+        const url = 'https://serene-retreat-39457.herokuapp.com/api/v1/order/';
         getOrderRequest(url.concat(orderId))
             .then((res) => {
                 const { pizzas, desserts, drinks, takeaway, orderDate, createdAt } = res
@@ -46,7 +46,7 @@ const OrderElements = ({ orderId }) => {
                 console.log(err);
             })
 
-    }, [])
+    }, [orderId])
 
     const getDate = (date) => {
         return date.split('T')[0];

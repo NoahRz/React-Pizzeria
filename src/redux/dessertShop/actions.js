@@ -5,7 +5,7 @@ import * as actionTypes from './types';
 
 export const getProducts = () => dispatch => {
     dispatch(setProductsLoading());
-    axios.get('http://localhost:3000/api/v1/desserts').then(res => {
+    axios.get('https://serene-retreat-39457.herokuapp.com/api/v1/desserts').then(res => {
         dispatch({
             type: actionTypes.GET_DESSERTS,
             payload: res.data

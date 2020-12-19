@@ -25,7 +25,7 @@ const Profile = ({ auth }) => {
     };
 
     const fetchData = () => {
-        makeGetRequest('http://localhost:3000/api/v1/profile', config)
+        makeGetRequest('https://serene-retreat-39457.herokuapp.com/api/v1/profile', config)
             .then((res) => {
                 setAuthorized(true)
             })

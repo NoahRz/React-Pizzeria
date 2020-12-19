@@ -99,9 +99,9 @@ const Navbar = ({ pizzaCart, dessertCart, drinkCart, auth, openHandle }) => {
                         <NavItem>
                             {isAuthenticated ? <Logout /> : <GuestLinks />}
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <NavLinks to="/profile">Profile</NavLinks>
-                        </NavItem>
+                        </NavItem> */}
                     </NavMenu>
                     <NavBtn>
                         {isAuthenticated ? <NavBtnLink to="/signup">{`Welcome ${user.username}`}</NavBtnLink> : <NavBtnLink to="/signup">Sign Up</NavBtnLink>}

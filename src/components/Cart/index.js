@@ -110,11 +110,11 @@ const Cart = ({ pizzaCart, dessertCart, drinkCart, auth, removeAllPizzas, remove
     const handleSubmit = () => {
         // ... submit to API
         if (isAuthenticated) {
-            makePostOrderRequest('http://localhost:3000/api/v1/order',
+            makePostOrderRequest('https://serene-retreat-39457.herokuapp.com/api/v1/order',
                 transformToList(pizzaCart), transformToList(dessertCart), transformToList(drinkCart), selectedDate, takeaway)
                 .then((res) => {
                     const orderId = res.data._id;
-                    const url = 'http://localhost:3000/api/v1/updateOrder/';
+                    const url = 'https://serene-retreat-39457.herokuapp.com/api/v1/updateOrder/';
                     makeUpdateUserRequest(url.concat(auth.user._id), orderId) // add order id to user
                         .then((res) => {
                             removeAllPizzas();
