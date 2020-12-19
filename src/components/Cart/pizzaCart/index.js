@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { removeFromCart, adjustQty } from '../../../redux/pizzaShop/actions';
 
-import CartItem from '../cartItem/';
+import CartItem from '../CartItem';
 
 const PizzaItem = ({ itemData, removeFromCart, adjustQty }) => {
 
