@@ -3,6 +3,14 @@ Click the video to see the preview !
 
 [![Pizzeria](http://img.youtube.com/vi/zvf7ips_s30/0.jpg)](https://www.youtube.com/watch?v=zvf7ips_s30&feature=youtu.be)
 
+## Tools used 
+* React
+* React-hooks
+* React-redux
+* React-router
+* Axios
+* Material-ui
+* styled-components
 ---
 
 # Getting Started with Create React App
